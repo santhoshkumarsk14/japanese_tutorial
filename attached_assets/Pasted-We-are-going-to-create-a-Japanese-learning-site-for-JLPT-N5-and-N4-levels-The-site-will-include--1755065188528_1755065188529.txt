@@ -1,0 +1,725 @@
+We are going to create a Japanese learning site for JLPT N5 and N4 levels.
+ The site will include:
+   - Vocabulary (words) from basic to N4
+   - Kanji from basic to N4
+   - Grammar points from basic to N4
+   - Reading passages (with questions?)
+   - Advanced learning techniques: flashcards, multiple choice (select correct word/sentence), etc.
+ We are to hardcode all the data (so no external APIs for data, but we might use free APIs for some features like text-to-speech?).
+ However, the user mentioned loading tons of data and asked for free APIs in the market. Since we are hardcoding, we won't use an API for the content, but we might use APIs for additional features.
+ Steps:
+ 1. Plan the structure of the site (pages, components, data structure).
+ 2. Define the data for each section (vocabulary, kanji, grammar, reading passages).
+ 3. Implement the learning techniques (flashcards, quizzes, etc.) using the hardcoded data.
+ 4. Consider how to organize the large amount of data (maybe break into modules, use JSON files, etc.).
+ Technical Approach:
+ - We'll use React (since Lovable is a React-based framework) and TypeScript for type safety.
+ - We'll structure the data in JSON format and import it into our components.
+ - We'll use React Router for navigation.
+ Site Structure:
+   Home Page
+   |
+   |-- Vocabulary
+   |     |-- N5
+   |     |-- N4
+   |
+   |-- Kanji
+   |     |-- N5
+   |     |-- N4
+   |
+   |-- Grammar
+   |     |-- N5
+   |     |-- N4
+   |
+   |-- Reading
+   |     |-- N5
+   |     |-- N4
+   |
+   |-- Practice
+         |-- Flashcards
+         |-- Multiple Choice (vocab, kanji, grammar, reading comprehension)
+ Data Structure:
+   Vocabulary Item:
+     - id: number
+     - level: 'N5' | 'N4'
+     - japanese: string (the word in Japanese, might include kanji and kana)
+     - kana: string (reading in hiragana/katakana)
+     - english: string (meaning)
+     - example: string (example sentence, optional)
+   Kanji Item:
+     - id: number
+     - level: 'N5' | 'N4'
+     - kanji: string (the kanji character)
+     - onyomi: string (on reading)
+     - kunyomi: string (kun reading)
+     - meaning: string (english meaning)
+     - examples: Array<{ word: string, reading: string, meaning: string }>
+   Grammar Item:
+     - id: number
+     - level: 'N5' | 'N4'
+     - structure: string (the grammar structure, e.g., ～てください)
+     - meaning: string (english meaning)
+     - explanation: string (detailed explanation)
+     - examples: Array<{ japanese: string, english: string }>
+   Reading Passage:
+     - id: number
+     - level: 'N5' | 'N4'
+     - title: string
+     - content: string (the passage in Japanese)
+     - questions: Array<{
+          question: string,
+          options: string[],
+          correctAnswer: number // index of the correct option
+        }>
+   Note: We can have a data directory with JSON files for each category and level.
+ Implementation of Features:
+   Flashcards:
+     - We'll have a component that shows a card with a word (or kanji, grammar point) and flips to show the meaning/reading.
+     - We can use state to track the current index and whether the card is flipped.
+   Multiple Choice Quiz:
+     - For vocabulary: show a Japanese word and 4 English meanings, user selects one.
+     - For kanji: show a kanji character and 4 meanings, or show a meaning and 4 kanji options.
+     - For grammar: show a sentence with a blank and 4 options to fill the blank.
+     - For reading: after the passage, show multiple choice questions.
+   We can have a generic multiple choice component that takes:
+     - question: string (or JSX for the question)
+     - options: string[] (or JSX for each option)
+     - correctAnswer: number
+     - onAnswer: (isCorrect: boolean) => void
+   We can also have a study mode where the user can browse through the vocabulary/kanji/grammar.
+   Additional Features:
+     - Text-to-Speech: We can use the Web Speech API (if available in the browser) to pronounce the Japanese words.
+       This is a free API built into browsers.
+     - Progress Tracking: We can use local storage to track the user's progress (which words they have studied, quiz scores, etc.).
+   How to handle large data:
+     - We can break the data into multiple JSON files and import them as needed (code splitting).
+     - For example, we can have:
+          data/
+            vocabulary/
+              n5.json
+              n4.json
+            kanji/
+              n5.json
+              n4.json
+            ...
+     - Then we can dynamically import the JSON when the user selects a level.
+   Example of dynamic import:
+     We can use `import()` but note that this returns a promise. We can do:
+        const vocabularyData = await import(`./data/vocabulary/${level}.json`);
+     However, we need to make sure the files are available at build time. Since we are hardcoding, we can list all the levels.
+   Alternatively, we can import all at once and then select by level.
+   Since the data is not huge (N5 and N4 together is manageable), we can import all at build time.
+   Example:
+        import n5Vocabulary from './data/vocabulary/n5.json';
+        import n4Vocabulary from './data/vocabulary/n4.json';
+        const vocabulary = {
+          n5: n5Vocabulary,
+          n4: n4Vocabulary
+        };
+   Then in the component, we can get the data by level.
+   For the reading passages, we might have longer texts, but again, it's manageable.
+   Free APIs for additional features:
+     - For text-to-speech: Web Speech API (browser-based, free). We can use `window.speechSynthesis`.
+     - For dictionary lookups (if we want to extend): We might use Jisho API (free, but check terms) or Weblio (but they might not allow CORS). 
+       However, since we are hardcoding, we don't need an API for the core data.
+   Let's design the pages:
+     HomePage: 
+        - Links to Vocabulary, Kanji, Grammar, Reading, Practice.
+     VocabularyPage:
+        - Tabs for N5 and N4.
+        - List of vocabulary items for the selected level.
+        - Each item shows: japanese, kana, english, and a speaker icon to pronounce.
+        - Option to start flashcards for this level.
+     KanjiPage, GrammarPage, ReadingPage: similar.
+     PracticePage:
+        - Sections: Flashcards, Multiple Choice (by category and level)
+   We can also have a dashboard to track progress.
+   Implementation:
+     We'll use Lovable (React) and create:
+        - components: Card (for flashcard), MultipleChoiceQuestion, ProgressBar, etc.
+        - pages: Home, Vocabulary, Kanji, Grammar, Reading, Practice, Dashboard.
+     We'll use React Router for routing.
+     We'll use context or Redux for state management if needed (for progress tracking, we can use context or local storage).
+   Steps to code:
+     1. Set up the project with Lovable (if not done, we assume it's set up).
+     2. Create the data structure and JSON files.
+     3. Create the components and pages.
+     4. Implement the features.
+   Let's write a sample data for vocabulary (n5.json):
+        [
+          {
+            "id": 1,
+            "level": "N5",
+            "japanese": "私",
+            "kana": "わたし",
+            "english": "I, me",
+            "example": "私は学生です。"
+          },
+          ... more
+        ]
+   Similarly for others.
+   For the flashcards:
+        We can have a component that takes an array of items (for a level) and then:
+          - Shows the current item's front (japanese word) and when clicked, flips to show the back (kana and english).
+        We can use CSS for flip animation.
+   For multiple choice:
+        We can generate a quiz by:
+          - For vocabulary: pick one correct and three random incorrect meanings (from the same level, but not the same word).
+        We have to be cautious: if we pick random, they might be too easy or too hard. We can pre-generate quizzes or generate on the fly.
+        We can have a function:
+          function generateVocabularyQuiz(vocabularyList, currentIndex) {
+            const correct = vocabularyList[currentIndex];
+            // get three other random items from the list (excluding currentIndex)
+            const others = vocabularyList.filter((_, idx) => idx !== currentIndex);
+            const randomOthers = shuffle(others).slice(0, 3);
+            const options = shuffle([correct, ...randomOthers]).map(item => item.english);
+            return {
+              question: `What does "${correct.japanese}" mean?`,
+              options: options,
+              correctIndex: options.indexOf(correct.english)
+            };
+          }
+   Similarly for kanji and grammar.
+   Let's create a technical document as a prompt for Lovable:
+     We are to write a detailed plan and code structure.
+     We break down into:
+        A. Data
+        B. Components
+        C. Pages
+        D. Features (Flashcards, Multiple Choice, Text-to-Speech, Progress Tracking)
+        E. Routing
+        F. State Management (for progress)
+     We'll write the code in the following structure:
+        src/
+          data/
+            vocabulary/
+              n5.json
+              n4.json
+            kanji/
+              n5.json
+              n4.json
+            grammar/
+              n5.json
+              n4.json
+            reading/
+              n5.json
+              n4.json
+          components/
+            Flashcard.tsx
+            MultipleChoiceQuestion.tsx
+            ProgressBar.tsx
+            SpeakerIcon.tsx (for TTS)
+          pages/
+            HomePage.tsx
+            VocabularyPage.tsx
+            KanjiPage.tsx
+            GrammarPage.tsx
+            ReadingPage.tsx
+            PracticePage.tsx
+            DashboardPage.tsx
+          App.tsx
+          index.tsx
+          context/
+            ProgressContext.tsx (if using context)
+     Let's start with the data.
+     We'll create the JSON files as above.
+     Then, we create a service to load data:
+        src/services/dataService.ts
+        This will import all the JSONs and export functions to get data by level and category.
+        Example:
+          import n5Vocabulary from '../data/vocabulary/n5.json';
+          import n4Vocabulary from '../data/vocabulary/n4.json';
+          export const getVocabulary = (level: 'n5' | 'n4') => {
+            if (level === 'n5') {
+              return n5Vocabulary;
+            } else {
+              return n4Vocabulary;
+            }
+          };
+        Similarly for kanji, grammar, reading.
+     For the reading passages, we might structure n5.json as:
+        [
+          {
+            "id": 1,
+            "level": "N5",
+            "title": "自己紹介",
+            "content": "私は山田です。...",
+            "questions": [
+              {
+                "question": "山田さんは何歳ですか？",
+                "options": ["20歳", "25歳", "30歳", "35歳"],
+                "correctAnswer": 1
+              },
+              ...
+            ]
+          },
+          ...
+        ]
+     Now, the components:
+        Flashcard.tsx:
+          Props: 
+            item: { front: string, back: string } OR we can make it generic and pass a render prop?
+          We'll design for vocabulary:
+            front: item.japanese
+            back: item.kana + " - " + item.english
+          But we might use for kanji:
+            front: item.kanji
+            back: item.meaning
+          So we can make it:
+            <Flashcard front={frontContent} back={backContent} />
+          And let the parent component decide what to show.
+          State: isFlipped (boolean)
+          On click, flip.
+          CSS: 
+            .flashcard { transition: transform 0.6s; transform-style: preserve-3d; }
+            .flipped { transform: rotateY(180deg); }
+          We'll have two faces: front and back, both position:absolute, backface-visibility: hidden.
+        MultipleChoiceQuestion.tsx:
+          Props:
+            question: string
+            options: string[]
+            correctAnswer: number (index)
+            onAnswer: (selectedIndex: number) => void -> we can let parent know and then parent can check.
+          We can show the question and then a list of buttons for options.
+          When an option is selected, we disable the buttons and show if it's correct or not (by changing the button color).
+          We can also show the next button after answer.
+        SpeakerIcon.tsx:
+          Props: text: string (to speak)
+          On click, use window.speechSynthesis to speak the text.
+          We can use:
+            const speak = (text: string) => {
+              const utterance = new SpeechSynthesisUtterance(text);
+              utterance.lang = 'ja-JP';
+              window.speechSynthesis.speak(utterance);
+            };
+        ProgressBar.tsx: 
+          Props: current: number, total: number
+     Pages:
+        VocabularyPage:
+          State: level ('n5' | 'n4'), vocabularyList (from dataService)
+          We'll have two buttons to switch level.
+          Then, we map vocabularyList to a list of items (with SpeakerIcon for the japanese word).
+          Also, a button to start flashcards for the current level.
+        PracticePage:
+          We'll have a section for each practice type (flashcards, multiple choice) and for each category.
+          For flashcards:
+            We can let the user choose category (vocabulary, kanji, grammar) and level.
+            Then, we start a flashcard session with the items from that category and level.
+          For multiple choice:
+            Similarly, choose category and level, and then we generate a quiz.
+          We can have a state to track the current practice mode and the current item in the session.
+     Progress Tracking:
+        We can track:
+          - For vocabulary: how many times the user has seen a word, and whether they know it (based on quizzes or manual mark).
+          - Quiz scores.
+        We can store in local storage.
+        We can create a context:
+          ProgressContext:
+            state: {
+              vocabulary: { [id]: { seenCount: number, known: boolean } },
+              kanji: ...,
+              grammar: ...,
+              reading: ...,
+              quizScores: Array<{ category: string, level: string, score: number, date: string }>
+            }
+        And provide functions to update.
+     This is a high-level plan.
+     Now, to answer the user's question about free APIs:
+        We are using the Web Speech API for text-to-speech, which is free and built-in.
+        For the content, we are hardcoding, so no external API needed.
+        If we want to extend, we might consider:
+          - Jisho API (for dictionary lookups) - but we are not using it currently.
+        So we are good.
+     We can now write the code accordingly.
+     Note: This is a big project, so we'll implement step by step.
+     Let's start by setting up the project and creating the data structure.
+     We'll create the JSON files with sample data.
+     Then, we'll create the pages and components.
+     We'll use Lovable's existing components if any, but since we don't have a specific design system, we'll use basic CSS.
+     We can use Lovable's routing and state management.
+     We'll write in TypeScript.
+     We'll create:
+        npx create-react-app japanese-learning --template typescript
+     Then, we'll structure the folders as above.
+     We'll install react-router-dom for routing.
+     We'll start coding.
+     Since we cannot write the entire code here, we'll provide a sample for the VocabularyPage and Flashcard component.
+     VocabularyPage.tsx:
+        import React, { useState } from 'react';
+        import { getVocabulary } from '../services/dataService';
+        import Flashcard from '../components/Flashcard';
+        import SpeakerIcon from '../components/SpeakerIcon';
+        const VocabularyPage: React.FC = () => {
+          const [level, setLevel] = useState<'n5' | 'n4'>('n5');
+          const vocabularyList = getVocabulary(level);
+          return (
+            <div>
+              <h1>Vocabulary</h1>
+              <div>
+                <button onClick={() => setLevel('n5')}>N5</button>
+                <button onClick={() => setLevel('n4')}>N4</button>
+              </div>
+              <ul>
+                {vocabularyList.map(item => (
+                  <li key={item.id}>
+                    <div>{item.japanese} ({item.kana})</div>
+                    <div>{item.english}</div>
+                    <SpeakerIcon text={item.japanese} />
+                  </li>
+                ))}
+              </ul>
+              <div>
+                <h2>Flashcards</h2>
+                <button onClick={() => {/* Start flashcard session */}}>Start Flashcards</button>
+              </div>
+            </div>
+          );
+        };
+     Flashcard.tsx:
+        import React, { useState } from 'react';
+        import './Flashcard.css';
+        interface FlashcardProps {
+          front: React.ReactNode;
+          back: React.ReactNode;
+        }
+        const Flashcard: React.FC<FlashcardProps> = ({ front, back }) => {
+          const [isFlipped, setIsFlipped] = useState(false);
+          const handleFlip = () => {
+            setIsFlipped(!isFlipped);
+          };
+          return (
+            <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+              <div className="flashcard-front">
+                {front}
+              </div>
+              <div className="flashcard-back">
+                {back}
+              </div>
+            </div>
+          );
+        };
+        export default Flashcard;
+     Flashcard.css:
+        .flashcard {
+          width: 300px;
+          height: 200px;
+          perspective: 1000px;
+          cursor: pointer;
+        }
+        .flashcard-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+        .flipped .flashcard-inner {
+          transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 20px;
+        }
+        .flashcard-back {
+          transform: rotateY(180deg);
+        }
+     This is a starting point.
+     We'll build the rest similarly.
+     We hope this technical document is sufficient to start the project.
+     Note: We haven't implemented the flashcard session (carousel of flashcards) yet. We would need a new component for that.
+     We can create:
+        FlashcardSession.tsx:
+          Props: items: any[] (with render functions for front and back? or we pass a function to get front and back for an item)
+          State: currentIndex, isFlipped (for the current card)
+          We show the current card as flashcard.
+          Buttons: Next, Previous.
+          When the card is flipped, we mark it as studied (update progress).
+     We'll leave the rest to the implementation.
+     We have provided a clear structure and plan.
+     Let us know if you need more details.
+Here's a comprehensive technical blueprint for your Japanese learning site using Lovable, optimized for JLPT N5-N4 content with gamified learning techniques:
+
+Technical Architecture
+Diagram
+Code
+Mermaid rendering failed.
+1. Data Structure (Hardcoded JSON)
+Organize data in separate JSON files:
+
+vocabulary.json
+
+json
+[
+  {
+    "id": "v001",
+    "level": "N5",
+    "japanese": "水",
+    "reading": "みず",
+    "meaning": "water",
+    "example": "水を飲みます"
+  },
+  {
+    "id": "v045",
+    "level": "N4",
+    "japanese": "準備",
+    "reading": "じゅんび",
+    "meaning": "preparation",
+    "example": "試験の準備をします"
+  }
+]
+kanji.json
+
+json
+[
+  {
+    "id": "k023",
+    "level": "N5",
+    "character": "日",
+    "onyomi": "ニチ",
+    "kunyomi": "ひ",
+    "meaning": "sun/day",
+    "examples": ["日曜日", "一日"]
+  }
+]
+grammar.json
+
+json
+[
+  {
+    "id": "g112",
+    "level": "N4",
+    "structure": "〜なければならない",
+    "meaning": "Must do...",
+    "explanation": "Express obligation",
+    "examples": ["勉強しなければならない"]
+  }
+]
+readings.json
+
+json
+[
+  {
+    "id": "r056",
+    "level": "N5",
+    "title": "私の家族",
+    "content": "私は家族が四人います...",
+    "questions": [
+      {
+        "question": "家族は何人ですか？",
+        "options": ["三人", "四人", "五人"],
+        "answer": 1
+      }
+    ]
+  }
+]
+2. Component Design
+Create reusable learning components:
+
+Flashcard Component
+
+jsx
+// components/Flashcard.jsx
+export default function Flashcard({ item, onNext }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div className="flashcard" onClick={() => setFlipped(!flipped)}>
+      {flipped ? (
+        <div className="back">
+          <p>{item.reading}</p>
+          <p>{item.meaning}</p>
+          <button onClick={onNext}>Next</button>
+        </div>
+      ) : (
+        <div className="front">
+          <h2>{item.japanese || item.character}</h2>
+        </div>
+      )}
+    </div>
+  );
+}
+Quiz Component
+
+jsx
+// components/Quiz.jsx
+export default function Quiz({ questions }) {
+  const [current, setCurrent] = useState(0);
+  
+  const checkAnswer = (selected) => {
+    if(selected === questions[current].answer) {
+      // Correct answer logic
+    }
+  };
+
+  return (
+    <div>
+      <h3>{questions[current].question}</h3>
+      {questions[current].options.map((opt, i) => (
+        <button key={i} onClick={() => checkAnswer(i)}>
+          {opt}
+        </button>
+      ))}
+    </div>
+  );
+}
+3. Gamification Features
+SRS Flashcards: Implement spaced repetition algorithm
+
+Match Game: Kanji-vocabulary matching
+
+Sentence Builder: Drag-and-drop grammar exercises
+
+Reading Challenges: Timed comprehension quizzes
+
+Progress Badges: Award for completing levels
+
+4. Data Loading Strategy
+For large datasets:
+
+javascript
+// utils/dataLoader.js
+import vocabData from '../data/vocabulary.json';
+import kanjiData from '../data/kanji.json';
+
+export const getLevelData = (level) => ({
+  vocabulary: vocabData.filter(item => item.level === level),
+  kanji: kanjiData.filter(item => item.level === level)
+});
+5. Free APIs for Enhancement
+Text-to-Speech: Web Speech API (window.speechSynthesis)
+
+javascript
+function speakJapanese(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'ja-JP';
+  speechSynthesis.speak(utterance);
+}
+Kanji Details: Kanjiapi.dev (free)
+
+text
+GET https://kanjiapi.dev/v1/kanji/日
+Example Sentences: Tatoeba.org API
+
+text
+GET https://tatoeba.org/en/api_v0/search?query=水&to=jpn
+6. Progress Tracking
+javascript
+// hooks/useProgress.js
+export default function useProgress() {
+  const [progress, setProgress] = useState(() => {
+    const saved = localStorage.getItem('jlpt-progress');
+    return saved ? JSON.parse(saved) : {n5: {}, n4: {}};
+  });
+
+  useEffect(() => {
+    localStorage.setItem('jlpt-progress', JSON.stringify(progress));
+  }, [progress]);
+
+  const updateProgress = (level, itemId) => {
+    setProgress(prev => ({
+      ...prev,
+      [level]: {...prev[level], [itemId]: true}
+    }));
+  };
+
+  return { progress, updateProgress };
+}
+7. Implementation Roadmap
+Set up Lovable project: npm create lovable@latest
+
+Create /data directory with JSON files
+
+Build core components:
+
+FlashcardSystem.jsx
+
+GrammarExplainer.jsx
+
+KanjiGrid.jsx
+
+ReadingComprehension.jsx
+
+Implement gamification features
+
+Add progress tracking
+
+Integrate Web Speech API
+
+Create responsive layouts
+
+Optimization Tips
+Code Splitting:
+
+javascript
+const QuizComponent = React.lazy(() => import('./components/Quiz'));
+Data Chunking: Split JSON by level (n5_vocab.json, n4_vocab.json)
+
+IndexedDB: For larger datasets (5000+ items)
+
+Virtualized Lists: react-window for long lists
+
+Sample Dashboard Layout
+jsx
+// pages/Dashboard.jsx
+export default function Dashboard() {
+  const { progress } = useProgress();
+  
+  return (
+    <div className="dashboard">
+      <LevelProgress level="N5" 
+        completed={Object.keys(progress.n5).length} 
+        total={n5TotalItems} />
+      
+      <div className="learning-modules">
+        <ModuleCard 
+          title="Vocabulary" 
+          icon="📚" 
+          progress={calculateProgress('vocabulary')} />
+        <ModuleCard 
+          title="Kanji" 
+          icon="🈯" 
+          progress={calculateProgress('kanji')} />
+      </div>
+      
+      <DailyChallenge />
+    </div>
+  );
+}
+This architecture supports:
+
+1000+ vocabulary words
+
+300+ kanji
+
+120 grammar points
+
+50+ reading passages
+
+All data hardcoded
+
+Client-side processing
+
+Progress persistence
+
+Gamified learning
+
+For content sourcing:
+
+Use JLPT official content lists
+
+Jisho.org for example sentences
+
+Tanos.co.uk for JLPT breakdowns
+
+Tofugu's learning resources
+
+No backend required - all data and functionality works client-side. Implement responsive design with Lovable's built-in styling system for mobile-friendly learning.
