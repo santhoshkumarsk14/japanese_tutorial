@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLearner - Japanese Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        secondary: '#DC2626',
+                        accent: '#059669',
+                        n5: '#10B981',
+                        n4: '#F59E0B'
+                    },
+                    fontFamily: {
+                        'japanese': ['Noto Sans JP', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .sidebar-collapsed {
+            width: 80px;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .bounce-in {
+            animation: bounceIn 0.6s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-['Inter']">
+    <!-- @COMPONENT: App [Main application wrapper] -->
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- @COMPONENT: Sidebar [Navigation and quick access] -->
+        <div id="sidebar" class="bg-white shadow-lg transition-all duration-300 w-64 flex-shrink-0 border-r border-gray-200">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">J</span>
+                    </div>
+                    <div class="sidebar-text">
+                        <h1 class="text-xl font-bold text-gray-800">JLearner</h1>
+                        <p class="text-sm text-gray-500">Master Japanese</p>
+                    </div>
+                </div>
+                <button id="sidebar-toggle" class="absolute top-6 right-4 p-2 text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="p-4 space-y-2">
+                <a href="#dashboard" class="nav-item active flex items-center space-x-3 p-3 rounded-lg bg-blue-50 text-primary">
+                    <i class="fas fa-tachometer-alt w-5"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="#hiragana" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <span class="w-5 text-center font-japanese">あ</span>
+                    <span class="sidebar-text">Hiragana</span>
+                </a>
+                <a href="#katakana" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <span class="w-5 text-center font-japanese">ア</span>
+                    <span class="sidebar-text">Katakana</span>
+                </a>
+                <a href="#words" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-book w-5"></i>
+                    <span class="sidebar-text">Words</span>
+                </a>
+                <a href="#kanji" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <span class="w-5 text-center font-japanese">漢</span>
+                    <span class="sidebar-text">Kanji</span>
+                </a>
+                <a href="#grammar" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-language w-5"></i>
+                    <span class="sidebar-text">Grammar</span>
+                </a>
+                <a href="#reading" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-newspaper w-5"></i>
+                    <span class="sidebar-text">Reading</span>
+                </a>
+                <a href="#practice" class="nav-item flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
+                    <i class="fas fa-gamepad w-5"></i>
+                    <span class="sidebar-text">Practice</span>
+                </a>
+            </nav>
+            
+            <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+                <div class="sidebar-text">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <!-- A cheerful student studying Japanese with books and flashcards on a desk -->
+                        <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=40&h=40" alt="Student avatar" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-medium text-gray-800">Study Streak</p>
+                            <p class="text-sm text-gray-500">7 days 🔥</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 rounded-full h-2 mb-2">
+                        <div class="bg-accent h-2 rounded-full" style="width: 68%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500">Level 12 - 680/1000 XP</p>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: Sidebar -->
+
+        <!-- @COMPONENT: MainContent [Primary content area] -->
+        <div class="flex-1 overflow-auto">
+            
+            <!-- @COMPONENT: Header [Top navigation and search] -->
+            <header class="bg-white shadow-sm border-b border-gray-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
+                        <p class="text-gray-600">Continue your Japanese learning journey</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search words, kanji..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        <button class="p-2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        <button class="p-2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <!-- @END_COMPONENT: Header -->
+
+            <!-- @COMPONENT: DashboardContent [Main dashboard view] -->
+            <main class="p-6" id="main-content">
+                
+                <!-- Progress Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Hiragana</p>
+                                <p class="text-2xl font-bold text-gray-800">46/46</p>
+                            </div>
+                            <div class="w-16 h-16">
+                                <svg class="progress-ring" width="64" height="64">
+                                    <circle cx="32" cy="32" r="28" stroke="#E5E7EB" stroke-width="4" fill="none"/>
+                                    <circle cx="32" cy="32" r="28" stroke="#10B981" stroke-width="4" fill="none" 
+                                            stroke-dasharray="176" stroke-dashoffset="0"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-lg font-japanese">あ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm text-accent">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            Complete
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Katakana</p>
+                                <p class="text-2xl font-bold text-gray-800">42/46</p>
+                            </div>
+                            <div class="w-16 h-16 relative">
+                                <svg class="progress-ring" width="64" height="64">
+                                    <circle cx="32" cy="32" r="28" stroke="#E5E7EB" stroke-width="4" fill="none"/>
+                                    <circle cx="32" cy="32" r="28" stroke="#F59E0B" stroke-width="4" fill="none" 
+                                            stroke-dasharray="176" stroke-dashoffset="15"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-lg font-japanese">ア</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm text-n4">
+                            <i class="fas fa-clock mr-1"></i>
+                            91% Complete
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Vocabulary</p>
+                                <p class="text-2xl font-bold text-gray-800">186/340</p>
+                            </div>
+                            <div class="w-16 h-16 relative">
+                                <svg class="progress-ring" width="64" height="64">
+                                    <circle cx="32" cy="32" r="28" stroke="#E5E7EB" stroke-width="4" fill="none"/>
+                                    <circle cx="32" cy="32" r="28" stroke="#2563EB" stroke-width="4" fill="none" 
+                                            stroke-dasharray="176" stroke-dashoffset="78"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <i class="fas fa-book text-lg text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm text-primary">
+                            <i class="fas fa-trending-up mr-1"></i>
+                            55% Complete
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Kanji</p>
+                                <p class="text-2xl font-bold text-gray-800">28/103</p>
+                            </div>
+                            <div class="w-16 h-16 relative">
+                                <svg class="progress-ring" width="64" height="64">
+                                    <circle cx="32" cy="32" r="28" stroke="#E5E7EB" stroke-width="4" fill="none"/>
+                                    <circle cx="32" cy="32" r="28" stroke="#DC2626" stroke-width="4" fill="none" 
+                                            stroke-dasharray="176" stroke-dashoffset="128"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-lg font-japanese">漢</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm text-secondary">
+                            <i class="fas fa-fire mr-1"></i>
+                            27% Complete
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Access Cards -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    
+                    <!-- Continue Learning -->
+                    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Continue Learning</h3>
+                            
+                            <!-- Current Lesson Card -->
+                            <div class="bg-gradient-to-r from-primary to-blue-600 rounded-lg p-6 text-white mb-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-blue-100 mb-1">Next Up: Katakana Practice</p>
+                                        <h4 class="text-xl font-semibold mb-2">Master キ, ク, ケ, コ</h4>
+                                        <p class="text-blue-100">4 characters remaining</p>
+                                    </div>
+                                    <!-- Japanese study materials with books, pencils and flashcards arranged on a wooden desk -->
+                                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" alt="Japanese learning materials" class="w-20 h-20 rounded-lg object-cover">
+                                </div>
+                                <button class="mt-4 bg-white text-primary px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                                    Continue Learning
+                                </button>
+                            </div>
+
+                            <!-- Recent Activity -->
+                            <div class="space-y-3">
+                                <h4 class="font-medium text-gray-800">Recent Activity</h4>
+                                <div class="space-y-2">
+                                    <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                                        <div class="w-8 h-8 bg-n5 rounded-full flex items-center justify-center">
+                                            <span class="text-white text-sm font-japanese">あ</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-800">Completed Hiragana Set 1</p>
+                                            <p class="text-xs text-gray-500">2 hours ago</p>
+                                        </div>
+                                        <div class="text-accent">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                            <i class="fas fa-book text-white text-xs"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-800">Practiced N5 Vocabulary</p>
+                                            <p class="text-xs text-gray-500">Yesterday</p>
+                                        </div>
+                                        <div class="text-n4">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Daily Challenge -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Daily Challenge</h3>
+                        
+                        <div class="text-center mb-4">
+                            <!-- Colorful Japanese flashcards scattered on a bright study surface -->
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=150" alt="Japanese flashcards" class="w-24 h-24 mx-auto rounded-lg object-cover mb-3">
+                            <h4 class="font-semibold text-gray-800">Flashcard Blitz</h4>
+                            <p class="text-sm text-gray-600 mb-4">Review 20 vocabulary words in under 5 minutes</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-accent to-green-600 rounded-lg p-4 text-white text-center mb-4">
+                            <p class="text-sm text-green-100">Reward</p>
+                            <p class="text-lg font-bold">+50 XP</p>
+                        </div>
+                        
+                        <button class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                            Start Challenge
+                        </button>
+                        
+                        <div class="mt-4 text-center">
+                            <p class="text-xs text-gray-500">Challenge resets in 18:43:21</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Modules Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Hiragana Module -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-n5 bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <span class="text-2xl font-japanese text-n5">あ</span>
+                                </div>
+                                <span class="px-2 py-1 bg-n5 bg-opacity-10 text-n5 text-xs font-medium rounded-full">COMPLETE</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Hiragana</h3>
+                            <p class="text-gray-600 text-sm mb-4">Master all 46 basic hiragana characters plus combinations</p>
+                            <div class="bg-gray-100 rounded-full h-2 mb-4">
+                                <div class="bg-n5 h-2 rounded-full transition-all duration-500" style="width: 100%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">46/46 characters</span>
+                                <span class="text-n5 font-medium">100%</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="w-full bg-n5 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition-colors">
+                                Review
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Katakana Module -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-n4 bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <span class="text-2xl font-japanese text-n4">ア</span>
+                                </div>
+                                <span class="px-2 py-1 bg-n4 bg-opacity-10 text-n4 text-xs font-medium rounded-full">IN PROGRESS</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Katakana</h3>
+                            <p class="text-gray-600 text-sm mb-4">Learn all 46 katakana characters for foreign words</p>
+                            <div class="bg-gray-100 rounded-full h-2 mb-4">
+                                <div class="bg-n4 h-2 rounded-full transition-all duration-500" style="width: 91%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">42/46 characters</span>
+                                <span class="text-n4 font-medium">91%</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="w-full bg-n4 text-white py-2 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Vocabulary Module -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-book text-primary text-xl"></i>
+                                </div>
+                                <span class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs font-medium rounded-full">ACTIVE</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Vocabulary</h3>
+                            <p class="text-gray-600 text-sm mb-4">1000+ essential words for N5 and N4 levels</p>
+                            <div class="bg-gray-100 rounded-full h-2 mb-4">
+                                <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 55%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">186/340 words</span>
+                                <span class="text-primary font-medium">55%</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                                Study
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kanji Module -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-secondary bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <span class="text-2xl font-japanese text-secondary">漢</span>
+                                </div>
+                                <span class="px-2 py-1 bg-secondary bg-opacity-10 text-secondary text-xs font-medium rounded-full">LEARNING</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Kanji</h3>
+                            <p class="text-gray-600 text-sm mb-4">300+ essential kanji with readings and meanings</p>
+                            <div class="bg-gray-100 rounded-full h-2 mb-4">
+                                <div class="bg-secondary h-2 rounded-full transition-all duration-500" style="width: 27%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">28/103 kanji</span>
+                                <span class="text-secondary font-medium">27%</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="w-full bg-secondary text-white py-2 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                                Practice
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grammar Module -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-purple-500 bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-language text-purple-500 text-xl"></i>
+                                </div>
+                                <span class="px-2 py-1 bg-purple-500 bg-opacity-10 text-purple-500 text-xs font-medium rounded-full">NEW</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Grammar</h3>
+                            <p class="text-gray-600 text-sm mb-4">120+ grammar structures with examples</p>
+                            <div class="bg-gray-100 rounded-full h-2 mb-4">
+                                <div class="bg-purple-500 h-2 rounded-full transition-all duration-500" style="width: 15%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">8/52 patterns</span>
+                                <span class="text-purple-500 font-medium">15%</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="w-full bg-purple-500 text-white py-2 rounded-lg font-medium hover:bg-purple-600 transition-colors">
+                                Learn
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Reading Module -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-indigo-500 bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-newspaper text-indigo-500 text-xl"></i>
+                                </div>
+                                <span class="px-2 py-1 bg-indigo-500 bg-opacity-10 text-indigo-500 text-xs font-medium rounded-full">LOCKED</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Reading</h3>
+                            <p class="text-gray-600 text-sm mb-4">Comprehension passages with questions</p>
+                            <div class="bg-gray-100 rounded-full h-2 mb-4">
+                                <div class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">0/25 passages</span>
+                                <span class="text-indigo-500 font-medium">0%</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <button class="w-full bg-gray-300 text-gray-500 py-2 rounded-lg font-medium cursor-not-allowed">
+                                Unlock at Level 15
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <!-- @END_COMPONENT: DashboardContent -->
+
+            <!-- @COMPONENT: FlashcardModal [Hidden flashcard interface] -->
+            <div id="flashcard-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Katakana Practice</h3>
+                            <p class="text-sm text-gray-500">Card 3 of 4</p>
+                        </div>
+                        <button id="close-flashcard" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flip-card w-full h-64 mb-6" id="flashcard">
+                        <div class="flip-card-inner w-full h-full relative">
+                            <div class="flip-card-front absolute w-full h-full bg-gradient-to-br from-n4 to-yellow-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                <div class="text-center">
+                                    <span class="text-6xl font-japanese mb-4 block">キ</span>
+                                    <p class="text-sm opacity-75">Click to reveal</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back absolute w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold mb-2">ki</p>
+                                    <p class="text-lg mb-4">Like "key"</p>
+                                    <button class="speaker-btn text-white hover:text-yellow-300 transition-colors" data-text="き">
+                                        <i class="fas fa-volume-up text-2xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+                            <i class="fas fa-times mr-2"></i>Hard
+                        </button>
+                        <button class="flex-1 bg-yellow-100 text-yellow-700 py-3 rounded-lg font-medium hover:bg-yellow-200 transition-colors">
+                            <i class="fas fa-clock mr-2"></i>Good
+                        </button>
+                        <button class="flex-1 bg-green-100 text-green-700 py-3 rounded-lg font-medium hover:bg-green-200 transition-colors">
+                            <i class="fas fa-check mr-2"></i>Easy
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 bg-gray-100 rounded-full h-2">
+                        <div class="bg-n4 h-2 rounded-full transition-all duration-300" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: FlashcardModal -->
+
+            <!-- @COMPONENT: QuizModal [Hidden quiz interface] -->
+            <div id="quiz-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Vocabulary Quiz</h3>
+                            <p class="text-sm text-gray-500">Question 5 of 10</p>
+                        </div>
+                        <button id="close-quiz" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="bg-gray-100 rounded-full h-2 mb-6">
+                            <div class="bg-primary h-2 rounded-full transition-all duration-300" style="width: 50%"></div>
+                        </div>
+                        
+                        <div class="text-center mb-6">
+                            <p class="text-sm text-gray-600 mb-4">What does this word mean?</p>
+                            <div class="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-6 text-white mb-6">
+                                <span class="text-4xl font-japanese">水</span>
+                                <button class="speaker-btn ml-4 text-white hover:text-blue-200 transition-colors" data-text="みず">
+                                    <i class="fas fa-volume-up text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button class="quiz-option w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50 transition-all">
+                                A) Fire
+                            </button>
+                            <button class="quiz-option w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50 transition-all">
+                                B) Water
+                            </button>
+                            <button class="quiz-option w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50 transition-all">
+                                C) Air
+                            </button>
+                            <button class="quiz-option w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50 transition-all">
+                                D) Earth
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+                            Skip
+                        </button>
+                        <button class="flex-1 bg-primary text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors opacity-50 cursor-not-allowed" disabled>
+                            Next Question
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: QuizModal -->
+
+            <!-- @COMPONENT: HiraganaChart [Hidden hiragana learning interface] -->
+            <div id="hiragana-content" class="hidden">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Hiragana</h2>
+                            <p class="text-gray-600">Master the basic 46 hiragana characters</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="px-4 py-2 bg-n5 text-white rounded-lg hover:bg-green-600 transition-colors">
+                                <i class="fas fa-play mr-2"></i>Practice
+                            </button>
+                            <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-gamepad mr-2"></i>Quiz
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Basic Hiragana Chart -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                        <h3 class="text-lg font-semibold mb-4">Basic Characters (Gojūon)</h3>
+                        <div class="grid grid-cols-5 gap-4">
+                            <!-- Vowels Row -->
+                            <div class="hiragana-char text-center p-4 border-2 border-n5 rounded-lg bg-n5 bg-opacity-10 hover:bg-opacity-20 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese text-n5 block mb-1">あ</span>
+                                <span class="text-xs text-gray-600">a</span>
+                                <button class="speaker-btn mt-1 text-n5 hover:text-green-600" data-text="あ">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">い</span>
+                                <span class="text-xs text-gray-600">i</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="い">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">う</span>
+                                <span class="text-xs text-gray-600">u</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="う">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">え</span>
+                                <span class="text-xs text-gray-600">e</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="え">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">お</span>
+                                <span class="text-xs text-gray-600">o</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="お">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- K Row -->
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">か</span>
+                                <span class="text-xs text-gray-600">ka</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="か">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">き</span>
+                                <span class="text-xs text-gray-600">ki</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="き">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">く</span>
+                                <span class="text-xs text-gray-600">ku</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="く">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">け</span>
+                                <span class="text-xs text-gray-600">ke</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="け">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="hiragana-char text-center p-4 border-2 border-gray-200 rounded-lg hover:border-n5 hover:bg-n5 hover:bg-opacity-10 transition-all cursor-pointer">
+                                <span class="text-2xl font-japanese block mb-1">こ</span>
+                                <span class="text-xs text-gray-600">ko</span>
+                                <button class="speaker-btn mt-1 text-gray-500 hover:text-n5" data-text="こ">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Continue with more rows... -->
+                        </div>
+                    </div>
+                    
+                    <!-- Study Tools -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold mb-4">Quick Practice</h3>
+                            <!-- Beautiful Japanese study scene with hiragana charts and writing practice sheets -->
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=200" alt="Hiragana practice charts" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <p class="text-gray-600 text-sm mb-4">Practice writing and recognition with interactive exercises</p>
+                            <button class="w-full bg-n5 text-white py-2 rounded-lg hover:bg-green-600 transition-colors">
+                                Start Practice
+                            </button>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold mb-4">Memory Games</h3>
+                            <!-- Engaging Japanese flashcard game setup with colorful cards -->
+                            <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=200" alt="Japanese flashcard games" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <p class="text-gray-600 text-sm mb-4">Match characters with sounds in fun, interactive games</p>
+                            <button class="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                Play Games
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: HiraganaChart -->
+
+        </div>
+        <!-- @END_COMPONENT: MainContent -->
+    </div>
+    <!-- @END_COMPONENT: App -->
+
+    <script>
+        // TODO: Implement state management with React Context or Redux for production
+        // TODO: Add API integration for progress tracking and user accounts
+        // TODO: Implement spaced repetition algorithm for optimal learning
+        
+        (function() {
+            // Sidebar toggle functionality
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarTexts = document.querySelectorAll('.sidebar-text');
+            
+            sidebarToggle?.addEventListener('click', function() {
+                sidebar.classList.toggle('sidebar-collapsed');
+                sidebarTexts.forEach(text => {
+                    text.style.display = sidebar.classList.contains('sidebar-collapsed') ? 'none' : 'block';
+                });
+            });
+
+            // Navigation functionality
+            const navItems = document.querySelectorAll('.nav-item');
+            const mainContent = document.getElementById('main-content');
+            const hiraganaContent = document.getElementById('hiragana-content');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items
+                    navItems.forEach(nav => nav.classList.remove('active', 'bg-blue-50', 'text-primary'));
+                    navItems.forEach(nav => nav.classList.add('text-gray-700'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active', 'bg-blue-50', 'text-primary');
+                    this.classList.remove('text-gray-700');
+                    
+                    // Show appropriate content
+                    const href = this.getAttribute('href');
+                    if (href === '#hiragana') {
+                        mainContent.style.display = 'none';
+                        hiraganaContent.style.display = 'block';
+                        hiraganaContent.classList.add('fade-in');
+                        document.querySelector('header h2').textContent = 'Hiragana';
+                        document.querySelector('header p').textContent = 'Master the basic Japanese syllabary';
+                    } else {
+                        mainContent.style.display = 'block';
+                        hiraganaContent.style.display = 'none';
+                        if (href === '#dashboard') {
+                            document.querySelector('header h2').textContent = 'Dashboard';
+                            document.querySelector('header p').textContent = 'Continue your Japanese learning journey';
+                        }
+                    }
+                });
+            });
+
+            // Flashcard modal functionality
+            const flashcardModal = document.getElementById('flashcard-modal');
+            const closeFlashcard = document.getElementById('close-flashcard');
+            const flashcard = document.getElementById('flashcard');
+            
+            // Open flashcard modal when clicking continue learning or practice buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Continue Learning') || 
+                    button.textContent.includes('Continue') || 
+                    button.textContent.includes('Practice')) {
+                    button.addEventListener('click', function() {
+                        flashcardModal.classList.remove('hidden');
+                        flashcardModal.classList.add('fade-in');
+                    });
+                }
+            });
+
+            closeFlashcard?.addEventListener('click', function() {
+                flashcardModal.classList.add('hidden');
+            });
+
+            // Flashcard flip functionality
+            flashcard?.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+
+            // Quiz modal functionality
+            const quizModal = document.getElementById('quiz-modal');
+            const closeQuiz = document.getElementById('close-quiz');
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            
+            // Open quiz modal when clicking quiz buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Start Challenge') || 
+                    button.textContent.includes('Quiz')) {
+                    button.addEventListener('click', function() {
+                        quizModal.classList.remove('hidden');
+                        quizModal.classList.add('fade-in');
+                    });
+                }
+            });
+
+            closeQuiz?.addEventListener('click', function() {
+                quizModal.classList.add('hidden');
+            });
+
+            // Quiz option selection
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove previous selections
+                    quizOptions.forEach(opt => {
+                        opt.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
+                        opt.classList.add('border-gray-200');
+                    });
+                    
+                    // Mark correct answer (B) Water in this example
+                    if (this.textContent.includes('Water')) {
+                        this.classList.add('border-green-500', 'bg-green-50');
+                        this.classList.remove('border-gray-200');
+                        // Enable next button
+                        document.querySelector('#quiz-modal button[disabled]').disabled = false;
+                        document.querySelector('#quiz-modal button[disabled]').classList.remove('opacity-50', 'cursor-not-allowed');
+                    } else {
+                        this.classList.add('border-red-500', 'bg-red-50');
+                        this.classList.remove('border-gray-200');
+                        // Show correct answer
+                        quizOptions.forEach(opt => {
+                            if (opt.textContent.includes('Water')) {
+                                opt.classList.add('border-green-500', 'bg-green-50');
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Text-to-Speech functionality using Web Speech API
+            const speakerButtons = document.querySelectorAll('.speaker-btn');
+            
+            function speakJapanese(text) {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'ja-JP';
+                    utterance.rate = 0.8;
+                    speechSynthesis.speak(utterance);
+                } else {
+                    console.log('Speech synthesis not supported');
+                }
+            }
+            
+            speakerButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const text = this.getAttribute('data-text');
+                    if (text) {
+                        speakJapanese(text);
+                        // Add visual feedback
+                        this.classList.add('bounce-in');
+                        setTimeout(() => {
+                            this.classList.remove('bounce-in');
+                        }, 600);
+                    }
+                });
+            });
+
+            // Hiragana character interaction
+            const hiraganaChars = document.querySelectorAll('.hiragana-char');
+            
+            hiraganaChars.forEach(char => {
+                char.addEventListener('click', function() {
+                    // Toggle learned state
+                    if (this.classList.contains('border-gray-200')) {
+                        this.classList.remove('border-gray-200', 'hover:border-n5', 'hover:bg-n5', 'hover:bg-opacity-10');
+                        this.classList.add('border-n5', 'bg-n5', 'bg-opacity-10');
+                        
+                        // Update progress
+                        // TODO: Implement progress tracking with local storage
+                        console.log('Character learned:', this.querySelector('.font-japanese').textContent);
+                    }
+                });
+            });
+
+            // Mock data structure for future implementation
+            const mockData = {
+                hiragana: [
+                    { char: 'あ', romaji: 'a', learned: true },
+                    { char: 'い', romaji: 'i', learned: false },
+                    { char: 'う', romaji: 'u', learned: false },
+                    { char: 'え', romaji: 'e', learned: false },
+                    { char: 'お', romaji: 'o', learned: false },
+                    // ... more characters
+                ],
+                katakana: [
+                    { char: 'ア', romaji: 'a', learned: true },
+                    { char: 'イ', romaji: 'i', learned: true },
+                    { char: 'ウ', romaji: 'u', learned: true },
+                    { char: 'エ', romaji: 'e', learned: true },
+                    { char: 'オ', romaji: 'o', learned: false },
+                    // ... more characters
+                ],
+                vocabulary: [
+                    { id: 1, japanese: '水', reading: 'みず', english: 'water', level: 'N5', learned: true },
+                    { id: 2, japanese: '火', reading: 'ひ', english: 'fire', level: 'N5', learned: false },
+                    // ... more vocabulary
+                ],
+                kanji: [
+                    { id: 1, char: '水', onyomi: 'スイ', kunyomi: 'みず', meaning: 'water', level: 'N5' },
+                    { id: 2, char: '火', onyomi: 'カ', kunyomi: 'ひ', meaning: 'fire', level: 'N5' },
+                    // ... more kanji
+                ],
+                grammar: [
+                    { id: 1, structure: 'です/である', meaning: 'is/am/are (polite)', level: 'N5' },
+                    { id: 2, structure: 'ではありません', meaning: 'is not (polite negative)', level: 'N5' },
+                    // ... more grammar
+                ]
+            };
+
+            // Progress tracking with localStorage
+            function saveProgress() {
+                // TODO: Implement comprehensive progress saving
+                const progress = {
+                    hiraganaComplete: 46,
+                    katakanaComplete: 42,
+                    vocabularyLearned: 186,
+                    kanjiLearned: 28,
+                    grammarLearned: 8,
+                    streak: 7,
+                    level: 12,
+                    xp: 680
+                };
+                localStorage.setItem('jlearner-progress', JSON.stringify(progress));
+            }
+
+            function loadProgress() {
+                // TODO: Implement progress loading and UI updates
+                const saved = localStorage.getItem('jlearner-progress');
+                if (saved) {
+                    const progress = JSON.parse(saved);
+                    console.log('Loaded progress:', progress);
+                    // Update UI with saved progress
+                }
+            }
+
+            // Initialize app
+            loadProgress();
+            
+            // Auto-save progress periodically
+            setInterval(saveProgress, 30000); // Save every 30 seconds
+
+            console.log('JLearner initialized with mock data structure');
+        })();
+    </script>
+</body>
+</html>
