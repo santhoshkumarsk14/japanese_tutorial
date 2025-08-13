@@ -1,0 +1,74 @@
+JLPT N4 Exam Study Requirements (2025)
+To prepare for the JLPT N4, you should focus on six main areas: vocabulary, kanji, grammar, listening, reading, and general learning/study duration.
+
+1. Vocabulary
+You need to know about 1,500 words for JLPT N4. Most study lists are between 570–1,500 words, but aim for 1,500 to be safe.
+
+2. Kanji
+Approximately 250–300 kanji are required. This number includes kanji from both N5 and N4 levels. Some lists specifically mention 167–170 N4-level kanji, but combined with N5, the total is near 250–300.
+
+3. Grammar
+There are about 130–132 grammar points to master for N4. These cover basic grammar and intermediate patterns commonly found in everyday Japanese.
+
+4. Listening
+Practice understanding simple daily conversations, instructions, and short dialogs. Use JLPT N4 listening books such as Shinkanzen Master N4, Speed Master N4, and Nihongo Challenge N4–N5. Regular audio practice is essential for passing the listening section.
+
+5. Reading
+You need to read and comprehend straightforward passages, notices, and everyday texts. JLPT N4 practice books and free online tests target reading skills, including tests with questions about reasoning, grammar in context, and extracting main ideas from simple text.
+
+6. Learning/Study Duration
+Estimated study time: 550–1,000 hours (with prior N5 knowledge).
+
+At a pace of 1 hour per day, this typically takes 1.5–2 years.
+
+Intensive learners (2+ hours per day) may complete N4 in 8–12 months.
+
+JLPT N4 Study Requirements Overview
+Area	Amount/Target
+Vocabulary	About 1,500 words
+Kanji	250–300 characters (including N5)
+Grammar	130–132 grammar points
+Listening	Simple daily conversations, short instructions
+Reading	Everyday texts, notices, passages
+
+
+
+
+Here are some free APIs and tools for accessing JLPT N4 vocabulary, kanji, and grammar data that you can use in apps, study projects, or web development:
+
+Vocabulary APIs
+JLPT Vocabulary API:
+jlpt-vocab-api.vercel.app
+
+Free RESTful and GraphQL API supporting JLPT vocabulary lists from N5 to N1.
+
+Example: Query for N4 vocabulary directly via endpoints.
+
+Jisho API (Unofficial):
+jisho.org/api/v1/search/words
+
+Free to use, can retrieve Japanese words, kanji, and vocabulary.
+
+Not fully tagged with JLPT levels, but offers extensive search capability.
+
+Kanji APIs
+Muzukanji API:
+github.com/baqterya/muzukanji
+
+Free, open source kanji API. Extensive database, includes JLPT levels and stroke count.
+
+kanjiapi.dev:
+kanjiapi.dev
+
+Free JSON API for kanji (13,000+ kanji, including JLPT info) with readings, meanings, and stroke order.
+
+Grammar Data
+JLPT Sensei:
+While there isn't a widely-used public API for JLPT grammar, sites like JLPT Sensei provide full downloadable lists and study guides for N4 grammar points, which may be suitable for batch import or scraping if needed. You can use flashcard apps like Anki or access downloadable lists for grammar.
+
+How to Use Them
+All APIs above are publicly documented and free for personal and educational use (some may require credit/citation for content, check specific licenses).
+
+They provide data in JSON format, accessible via REST endpoints.
+
+Combine them with resources like Anki decks or spreadsheet exports for offline use.

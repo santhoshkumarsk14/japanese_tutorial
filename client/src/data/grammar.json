@@ -112,6 +112,171 @@
   {
     "id": "g11",
     "level": "N4",
+    "structure": "〜ている",
+    "meaning": "progressive form, continuous action",
+    "explanation": "Indicates ongoing action or current state. Use て form + いる.",
+    "examples": [
+      {"japanese": "今、勉強しています。", "english": "I am studying now."},
+      {"japanese": "雨が降っています。", "english": "It is raining."}
+    ]
+  },
+  {
+    "id": "g12",
+    "level": "N4",
+    "structure": "〜てみる",
+    "meaning": "try doing",
+    "explanation": "Express trying something. Use て form + みる.",
+    "examples": [
+      {"japanese": "この料理を食べてみます。", "english": "I'll try eating this dish."},
+      {"japanese": "新しい方法を使ってみました。", "english": "I tried using a new method."}
+    ]
+  },
+  {
+    "id": "g13",
+    "level": "N4",
+    "structure": "〜ておく",
+    "meaning": "do in advance",
+    "explanation": "Do something in preparation for the future. Use て form + おく.",
+    "examples": [
+      {"japanese": "明日のために準備しておきます。", "english": "I'll prepare in advance for tomorrow."},
+      {"japanese": "資料を読んでおいてください。", "english": "Please read the materials beforehand."}
+    ]
+  },
+  {
+    "id": "g14",
+    "level": "N4",
+    "structure": "〜てしまう",
+    "meaning": "finish completely, regrettably",
+    "explanation": "Express completion or regret. Use て form + しまう.",
+    "examples": [
+      {"japanese": "宿題を忘れてしまいました。", "english": "I completely forgot my homework."},
+      {"japanese": "お金を使ってしまった。", "english": "I ended up spending all the money."}
+    ]
+  },
+  {
+    "id": "g15",
+    "level": "N4",
+    "structure": "〜たことがある",
+    "meaning": "have done before (experience)",
+    "explanation": "Express past experience. Use past form + ことがある.",
+    "examples": [
+      {"japanese": "富士山に登ったことがあります。", "english": "I have climbed Mt. Fuji before."},
+      {"japanese": "寿司を食べたことがありますか。", "english": "Have you ever eaten sushi?"}
+    ]
+  },
+  {
+    "id": "g16",
+    "level": "N4",
+    "structure": "〜と思います",
+    "meaning": "I think that...",
+    "explanation": "Express opinion or thoughts. Use plain form + と思います.",
+    "examples": [
+      {"japanese": "明日は雨が降ると思います。", "english": "I think it will rain tomorrow."},
+      {"japanese": "この映画は面白いと思います。", "english": "I think this movie is interesting."}
+    ]
+  },
+  {
+    "id": "g17",
+    "level": "N4",
+    "structure": "〜たら",
+    "meaning": "if, when",
+    "explanation": "Conditional form. Use past form + ら.",
+    "examples": [
+      {"japanese": "時間があったら、映画を見ます。", "english": "If I have time, I'll watch a movie."},
+      {"japanese": "家に帰ったら、電話します。", "english": "When I get home, I'll call you."}
+    ]
+  },
+  {
+    "id": "g18",
+    "level": "N4",
+    "structure": "〜ば",
+    "meaning": "if (conditional)",
+    "explanation": "Another conditional form. Change final う to えば.",
+    "examples": [
+      {"japanese": "早く起きれば、間に合います。", "english": "If you wake up early, you'll make it in time."},
+      {"japanese": "勉強すれば、成績が上がります。", "english": "If you study, your grades will improve."}
+    ]
+  },
+  {
+    "id": "g19",
+    "level": "N4",
+    "structure": "〜ながら",
+    "meaning": "while doing",
+    "explanation": "Do two actions simultaneously. Use ます stem + ながら.",
+    "examples": [
+      {"japanese": "音楽を聞きながら勉強します。", "english": "I study while listening to music."},
+      {"japanese": "歩きながら話しましょう。", "english": "Let's talk while walking."}
+    ]
+  },
+  {
+    "id": "g20",
+    "level": "N4",
+    "structure": "〜そうです (hearsay)",
+    "meaning": "I heard that...",
+    "explanation": "Report information heard from others. Use plain form + そうです.",
+    "examples": [
+      {"japanese": "田中さんは来週結婚するそうです。", "english": "I heard that Tanaka-san is getting married next week."},
+      {"japanese": "この店の料理は美味しいそうです。", "english": "I heard the food at this restaurant is delicious."}
+    ]
+  },
+  {
+    "id": "g21",
+    "level": "N4",
+    "structure": "〜そうです (appearance)",
+    "meaning": "looks like, seems",
+    "explanation": "Express appearance or likelihood. Use ます stem + そうです.",
+    "examples": [
+      {"japanese": "雨が降りそうです。", "english": "It looks like it's going to rain."},
+      {"japanese": "この問題は難しそうです。", "english": "This problem looks difficult."}
+    ]
+  },
+  {
+    "id": "g22",
+    "level": "N4",
+    "structure": "〜てから",
+    "meaning": "after doing",
+    "explanation": "Express sequence of actions. Use て form + から.",
+    "examples": [
+      {"japanese": "夕食を食べてから映画を見ます。", "english": "I'll watch a movie after eating dinner."},
+      {"japanese": "宿題をしてから寝ました。", "english": "I went to bed after doing homework."}
+    ]
+  },
+  {
+    "id": "g23",
+    "level": "N4",
+    "structure": "〜まえに",
+    "meaning": "before doing",
+    "explanation": "Express timing before an action. Use dictionary form + まえに.",
+    "examples": [
+      {"japanese": "寝る前に歯を磨きます。", "english": "I brush my teeth before sleeping."},
+      {"japanese": "出かける前に天気を確認しました。", "english": "I checked the weather before going out."}
+    ]
+  },
+  {
+    "id": "g24",
+    "level": "N4",
+    "structure": "〜あとで",
+    "meaning": "after, later",
+    "explanation": "Express timing after something. Use た form + あとで.",
+    "examples": [
+      {"japanese": "会議のあとで昼食を食べます。", "english": "I'll eat lunch after the meeting."},
+      {"japanese": "映画を見たあとで感想を話しました。", "english": "We talked about our impressions after watching the movie."}
+    ]
+  },
+  {
+    "id": "g25",
+    "level": "N4",
+    "structure": "〜はずです",
+    "meaning": "should be, is expected to",
+    "explanation": "Express expectation based on logic. Use plain form + はずです.",
+    "examples": [
+      {"japanese": "彼はもう帰ったはずです。", "english": "He should have gone home already."},
+      {"japanese": "この薬は効くはずです。", "english": "This medicine should be effective."}
+    ]
+  },
+  {
+    "id": "g11",
+    "level": "N4",
     "structure": "〜なければならない",
     "meaning": "must do, have to do",
     "explanation": "Express obligation or necessity. Use negative form + ければならない.",

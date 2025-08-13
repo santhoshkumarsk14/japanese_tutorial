@@ -6,9 +6,10 @@ import Flashcard from '@/components/Flashcard';
 import Quiz from '@/components/Quiz';
 import { getHiraganaCharacters, getKatakanaCharacters, getVocabulary, getKanji, getGrammar } from '@/lib/data';
 import { useProgress } from '@/hooks/useProgress';
-import { Gamepad2, Zap, Target, Trophy, Brain, BookOpen } from 'lucide-react';
+import { Gamepad2, Zap, Target, Trophy, Brain, BookOpen, Volume2 } from 'lucide-react';
+import ListeningPractice from '@/components/ListeningPractice';
 
-type PracticeMode = 'menu' | 'flashcard-blitz' | 'mixed-quiz' | 'speed-challenge' | 'character-match';
+type PracticeMode = 'menu' | 'flashcard-blitz' | 'mixed-quiz' | 'speed-challenge' | 'character-match' | 'listening-practice';
 
 export default function Practice() {
   const [currentMode, setCurrentMode] = useState<PracticeMode>('menu');
@@ -148,6 +149,19 @@ export default function Practice() {
       action: initializeSpeedChallenge
     },
     {
+      id: 'listening-practice',
+      title: 'Listening Practice',
+      description: 'N4 listening comprehension exercises',
+      icon: Volume2,
+      color: 'bg-blue-500',
+      textColor: 'text-blue-600',
+      bgColor: 'bg-blue-500/10',
+      difficulty: 'Medium',
+      time: '8 min',
+      xp: '+80 XP',
+      action: () => setCurrentMode('listening-practice')
+    },
+    {
       id: 'character-match',
       title: 'Character Match',
       description: 'Coming soon - Match characters with pronunciations',
@@ -221,6 +235,23 @@ export default function Practice() {
           onComplete={handleQuizComplete}
           onClose={() => setCurrentMode('menu')}
         />
+      </div>
+    );
+  }
+
+  if (currentMode === 'listening-practice') {
+    return (
+      <div className="p-6">
+        <div className="flex items-center mb-6">
+          <Button variant="outline" onClick={() => setCurrentMode('menu')} className="mr-4">
+            ← Back to Practice
+          </Button>
+        </div>
+        <ListeningPractice onComplete={(score) => {
+          addXP(score * 16 + 80);
+          updateStreak();
+          setCurrentMode('menu');
+        }} />
       </div>
     );
   }
