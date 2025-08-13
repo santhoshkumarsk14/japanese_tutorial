@@ -1,0 +1,22 @@
+[
+  {"id": "v151", "level": "N4", "japanese": "交通", "reading": "こうつう", "meaning": "traffic, transportation", "example": "交通事故に気をつけてください。"},
+  {"id": "v152", "level": "N4", "japanese": "運転", "reading": "うんてん", "meaning": "driving", "example": "運転免許を取りました。"},
+  {"id": "v153", "level": "N4", "japanese": "乗車", "reading": "じょうしゃ", "meaning": "boarding", "example": "乗車券を買ってください。"},
+  {"id": "v154", "level": "N4", "japanese": "降車", "reading": "こうしゃ", "meaning": "getting off", "example": "次の駅で降車します。"},
+  {"id": "v155", "level": "N4", "japanese": "電車", "reading": "でんしゃ", "meaning": "train", "example": "電車で通勤しています。"},
+  {"id": "v156", "level": "N4", "japanese": "地下鉄", "reading": "ちかてつ", "meaning": "subway", "example": "地下鉄の方が早いです。"},
+  {"id": "v157", "level": "N4", "japanese": "自動車", "reading": "じどうしゃ", "meaning": "automobile", "example": "新しい自動車を買いました。"},
+  {"id": "v158", "level": "N4", "japanese": "自転車", "reading": "じてんしゃ", "meaning": "bicycle", "example": "自転車で学校に行きます。"},
+  {"id": "v159", "level": "N4", "japanese": "飛行機", "reading": "ひこうき", "meaning": "airplane", "example": "飛行機で旅行しました。"},
+  {"id": "v160", "level": "N4", "japanese": "船", "reading": "ふね", "meaning": "ship, boat", "example": "船で島に行きました。"},
+  {"id": "v161", "level": "N4", "japanese": "駅", "reading": "えき", "meaning": "station", "example": "駅で友達に会いました。"},
+  {"id": "v162", "level": "N4", "japanese": "空港", "reading": "くうこう", "meaning": "airport", "example": "空港までタクシーで行きます。"},
+  {"id": "v163", "level": "N4", "japanese": "港", "reading": "みなと", "meaning": "port, harbor", "example": "港で魚を見ました。"},
+  {"id": "v164", "level": "N4", "japanese": "道路", "reading": "どうろ", "meaning": "road", "example": "道路工事で渋滞しています。"},
+  {"id": "v165", "level": "N4", "japanese": "信号", "reading": "しんごう", "meaning": "traffic light", "example": "信号が赤です。"},
+  {"id": "v166", "level": "N4", "japanese": "標識", "reading": "ひょうしき", "meaning": "sign", "example": "標識をよく見てください。"},
+  {"id": "v167", "level": "N4", "japanese": "切符", "reading": "きっぷ", "meaning": "ticket", "example": "切符を買い忘れました。"},
+  {"id": "v168", "level": "N4", "japanese": "料金", "reading": "りょうきん", "meaning": "fare, fee", "example": "料金を払ってください。"},
+  {"id": "v169", "level": "N4", "japanese": "時刻表", "reading": "じこくひょう", "meaning": "timetable", "example": "時刻表を確認します。"},
+  {"id": "v170", "level": "N4", "japanese": "遅延", "reading": "ちえん", "meaning": "delay", "example": "電車の遅延で遅刻しました。"}
+]

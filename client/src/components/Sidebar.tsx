@@ -17,6 +17,7 @@ import { useProgress } from '@/hooks/useProgress';
 const navigationItems = [
   { href: '/', label: 'Dashboard', icon: BarChart3, testId: 'nav-dashboard' },
   { href: '/n4-study-plan', label: 'N4 Study Plan', icon: Target, testId: 'nav-n4-study-plan' },
+  { href: '/content-dashboard', label: 'Content Status', icon: Brain, testId: 'nav-content-dashboard' },
   { href: '/hiragana', label: 'Hiragana', icon: () => <span className="w-5 text-center font-japanese">あ</span>, testId: 'nav-hiragana' },
   { href: '/katakana', label: 'Katakana', icon: () => <span className="w-5 text-center font-japanese">ア</span>, testId: 'nav-katakana' },
   { href: '/vocabulary', label: 'Words', icon: BookOpen, testId: 'nav-words' },

@@ -1,0 +1,175 @@
+{
+  "vocabulary": [
+    {
+      "id": "vq101",
+      "type": "meaning",
+      "question": "What does '運動' mean?",
+      "options": ["exercise", "work", "study", "play"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "vq102", 
+      "type": "reading",
+      "question": "How do you read '図書館'?",
+      "options": ["としょかん", "ずしょかん", "としかん", "ずしかん"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "vq103",
+      "type": "usage", 
+      "question": "Which sentence uses '研究' correctly?",
+      "options": ["日本語を研究しています", "研究が美味しいです", "研究を見ます", "研究が高いです"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "vq104",
+      "type": "meaning",
+      "question": "What does '経験' mean?",
+      "options": ["money", "experience", "feeling", "time"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "vq105",
+      "type": "context",
+      "question": "In what situation would you use '案内'?",
+      "options": ["When eating", "When guiding someone", "When sleeping", "When studying"],
+      "correctAnswer": 1,
+      "level": "N4"
+    }
+  ],
+  "kanji": [
+    {
+      "id": "kq101", 
+      "type": "reading",
+      "question": "How do you read '研究'?",
+      "options": ["けんきゅう", "けんく", "きゅうけん", "くけん"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "kq102",
+      "type": "meaning", 
+      "question": "What does the kanji '経' mean?",
+      "options": ["go through", "stop", "break", "make"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "kq103",
+      "type": "compound",
+      "question": "Which is a valid compound with '運'?",
+      "options": ["運動", "運食", "運眠", "運笑"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "kq104",
+      "type": "stroke",
+      "question": "How many strokes does '館' have?",
+      "options": ["14", "15", "16", "17"],
+      "correctAnswer": 2,
+      "level": "N4"
+    },
+    {
+      "id": "kq105",
+      "type": "radical",
+      "question": "What radical is in '案'?",
+      "options": ["木 (tree)", "水 (water)", "火 (fire)", "土 (earth)"],
+      "correctAnswer": 0,
+      "level": "N4"
+    }
+  ],
+  "grammar": [
+    {
+      "id": "gq101",
+      "type": "completion",
+      "question": "Complete: 雨が降り___そうです。(It looks like it will rain)",
+      "options": ["そう", "ます", "たい", "ない"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "gq102",
+      "type": "transformation",
+      "question": "Change to passive form: 先生が学生を褒める → ?",
+      "options": ["学生が先生に褒められる", "学生を先生が褒める", "先生に学生が褒める", "学生は先生を褒める"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "gq103",
+      "type": "meaning",
+      "question": "What does '〜によると' mean?",
+      "options": ["because of", "according to", "instead of", "in spite of"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "gq104",
+      "type": "usage",
+      "question": "When do you use '〜ておく'?",
+      "options": ["To show completion", "To prepare in advance", "To express regret", "To show ability"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "gq105", 
+      "type": "correction",
+      "question": "Which sentence is correct?",
+      "options": ["友達に会うつもりです", "友達を会うつもりです", "友達で会うつもりです", "友達は会うつもりです"],
+      "correctAnswer": 0,
+      "level": "N4"
+    }
+  ],
+  "listening": [
+    {
+      "id": "lq101",
+      "type": "comprehension",
+      "audio": "すみません、郵便局はどこですか。あの角を右に曲がって、まっすぐ行ってください。",
+      "question": "Where should the person go?",
+      "options": ["Turn left at the corner", "Turn right at the corner", "Go straight ahead", "Go back"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "lq102",
+      "type": "detail",
+      "audio": "明日の会議は午前十時から始まります。場所は三階の会議室Aです。",
+      "question": "When does the meeting start?",
+      "options": ["9:00 AM", "10:00 AM", "11:00 AM", "10:00 PM"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "lq103",
+      "type": "situation",
+      "audio": "いらっしゃいませ。何をお探しですか。プレゼント用の時計を探しています。",
+      "question": "What is the customer looking for?",
+      "options": ["A gift watch", "A gift bag", "A repair service", "The time"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "lq104",
+      "type": "emotion",
+      "audio": "試験の結果、とても心配です。大丈夫ですよ、きっと合格しますよ。",
+      "question": "How does the first person feel?",
+      "options": ["Happy", "Angry", "Worried", "Excited"],
+      "correctAnswer": 2,
+      "level": "N4"
+    },
+    {
+      "id": "lq105",
+      "type": "instruction",
+      "audio": "このボタンを押してから、お金を入れてください。それから商品を選んでください。",
+      "question": "What should you do first?",
+      "options": ["Insert money", "Press the button", "Select product", "Take change"],
+      "correctAnswer": 1,
+      "level": "N4"
+    }
+  ]
+}

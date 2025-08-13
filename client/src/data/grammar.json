@@ -275,58 +275,223 @@
     ]
   },
   {
-    "id": "g11",
+    "id": "g26",
     "level": "N4",
-    "structure": "〜なければならない",
+    "structure": "〜かもしれません",
+    "meaning": "might be, maybe",
+    "explanation": "Express uncertainty or possibility. Use plain form + かもしれません.",
+    "examples": [
+      {"japanese": "雨が降るかもしれません。", "english": "It might rain."},
+      {"japanese": "彼は忙しいかもしれません。", "english": "He might be busy."}
+    ]
+  },
+  {
+    "id": "g27",
+    "level": "N4",
+    "structure": "〜でしょう",
+    "meaning": "probably, I think",
+    "explanation": "Express probability or polite assumption. Use plain form + でしょう.",
+    "examples": [
+      {"japanese": "明日は晴れるでしょう。", "english": "It will probably be sunny tomorrow."},
+      {"japanese": "この問題は難しいでしょう。", "english": "This problem is probably difficult."}
+    ]
+  },
+  {
+    "id": "g28",
+    "level": "N4",
+    "structure": "〜なければならない/〜なくてはいけない",
     "meaning": "must do, have to do",
-    "explanation": "Express obligation or necessity. Use negative form + ければならない.",
+    "explanation": "Express obligation. Use negative form + ければならない or なくてはいけない.",
     "examples": [
       {"japanese": "宿題をしなければならない。", "english": "I have to do homework."},
-      {"japanese": "早く起きなければならない。", "english": "I have to wake up early."}
+      {"japanese": "早く行かなくてはいけない。", "english": "I have to go early."}
     ]
   },
   {
-    "id": "g12",
+    "id": "g29",
     "level": "N4",
-    "structure": "〜ても/でもいいです",
-    "meaning": "it's okay to do..., may do...",
-    "explanation": "Give permission or say something is acceptable. Use て form + も + いいです.",
+    "structure": "〜てもいいです",
+    "meaning": "it's okay to do, may do",
+    "explanation": "Give permission. Use て form + も + いいです.",
     "examples": [
-      {"japanese": "ここで写真を撮ってもいいですか。", "english": "Is it okay to take photos here?"},
-      {"japanese": "早く帰ってもいいです。", "english": "It's okay to go home early."}
+      {"japanese": "ここで写真を撮ってもいいです。", "english": "You may take photos here."},
+      {"japanese": "窓を開けてもいいですか。", "english": "May I open the window?"}
     ]
   },
   {
-    "id": "g13",
+    "id": "g30",
     "level": "N4",
-    "structure": "〜てはいけません",
-    "meaning": "must not do, not allowed to do",
-    "explanation": "Express prohibition. Use て form + は + いけません.",
+    "structure": "〜てはいけません/〜てはだめです",
+    "meaning": "must not do, not allowed",
+    "explanation": "Express prohibition. Use て form + は + いけません/だめです.",
     "examples": [
       {"japanese": "ここでタバコを吸ってはいけません。", "english": "You must not smoke here."},
-      {"japanese": "遅刻してはいけません。", "english": "You must not be late."}
+      {"japanese": "嘘をついてはだめです。", "english": "You must not tell lies."}
     ]
   },
   {
-    "id": "g14",
+    "id": "g31",
     "level": "N4",
-    "structure": "〜たことがあります",
-    "meaning": "have done... before (experience)",
-    "explanation": "Express past experience. Use た form + こと + が + あります.",
+    "structure": "〜ばよかった",
+    "meaning": "should have done",
+    "explanation": "Express regret about past actions. Use ば form + よかった.",
     "examples": [
-      {"japanese": "富士山に登ったことがあります。", "english": "I have climbed Mt. Fuji before."},
-      {"japanese": "寿司を食べたことがありますか。", "english": "Have you ever eaten sushi?"}
+      {"japanese": "もっと勉強すればよかった。", "english": "I should have studied more."},
+      {"japanese": "傘を持ってくればよかった。", "english": "I should have brought an umbrella."}
     ]
   },
   {
-    "id": "g15",
+    "id": "g32",
     "level": "N4",
-    "structure": "〜ている",
-    "meaning": "continuous action, state",
-    "explanation": "Progressive form showing ongoing action or resulting state.",
+    "structure": "〜つもりです",
+    "meaning": "intend to do",
+    "explanation": "Express intention or plan. Use plain form + つもりです.",
     "examples": [
-      {"japanese": "今、勉強しています。", "english": "I am studying now."},
-      {"japanese": "結婚しています。", "english": "I am married."}
+      {"japanese": "来年結婚するつもりです。", "english": "I intend to get married next year."},
+      {"japanese": "この本を読むつもりです。", "english": "I plan to read this book."}
+    ]
+  },
+  {
+    "id": "g33",
+    "level": "N4",
+    "structure": "〜予定です",
+    "meaning": "plan to, scheduled to",
+    "explanation": "Express scheduled plans. Use plain form + 予定です.",
+    "examples": [
+      {"japanese": "会議は３時から始まる予定です。", "english": "The meeting is scheduled to start at 3 o'clock."},
+      {"japanese": "来週出張する予定です。", "english": "I'm scheduled to go on a business trip next week."}
+    ]
+  },
+  {
+    "id": "g34",
+    "level": "N4",
+    "structure": "〜ところです",
+    "meaning": "just about to/just finished",
+    "explanation": "Express timing of action. Use with different forms for different meanings.",
+    "examples": [
+      {"japanese": "今から出かけるところです。", "english": "I'm just about to go out."},
+      {"japanese": "宿題が終わったところです。", "english": "I just finished my homework."}
+    ]
+  },
+  {
+    "id": "g35",
+    "level": "N4",
+    "structure": "〜最中です",
+    "meaning": "in the middle of",
+    "explanation": "Express being in the middle of an action. Use ている + 最中です.",
+    "examples": [
+      {"japanese": "食事をしている最中です。", "english": "I'm in the middle of eating."},
+      {"japanese": "会議の最中に電話がかかってきました。", "english": "The phone rang in the middle of the meeting."}
+    ]
+  },
+  {
+    "id": "g36",
+    "level": "N4",
+    "structure": "〜ばかりです",
+    "meaning": "just did, only",
+    "explanation": "Express recent completion or 'only'. Use た form + ばかりです.",
+    "examples": [
+      {"japanese": "日本に来たばかりです。", "english": "I just came to Japan."},
+      {"japanese": "仕事ばかりしています。", "english": "I'm only working."}
+    ]
+  },
+  {
+    "id": "g37",
+    "level": "N4",
+    "structure": "〜ようになりました",
+    "meaning": "came to be able to, became",
+    "explanation": "Express change in ability or state. Use plain form + ようになりました.",
+    "examples": [
+      {"japanese": "日本語が話せるようになりました。", "english": "I became able to speak Japanese."},
+      {"japanese": "毎日運動するようになりました。", "english": "I came to exercise every day."}
+    ]
+  },
+  {
+    "id": "g38",
+    "level": "N4",
+    "structure": "〜ことになりました",
+    "meaning": "it was decided that",
+    "explanation": "Express decision or arrangement made by others. Use plain form + ことになりました.",
+    "examples": [
+      {"japanese": "転勤することになりました。", "english": "It was decided that I would be transferred."},
+      {"japanese": "会議は延期することになりました。", "english": "It was decided that the meeting would be postponed."}
+    ]
+  },
+  {
+    "id": "g39",
+    "level": "N4",
+    "structure": "〜ことにしました",
+    "meaning": "decided to",
+    "explanation": "Express personal decision. Use plain form + ことにしました.",
+    "examples": [
+      {"japanese": "毎朝ジョギングすることにしました。", "english": "I decided to jog every morning."},
+      {"japanese": "この仕事を受けることにしました。", "english": "I decided to accept this job."}
+    ]
+  },
+  {
+    "id": "g40",
+    "level": "N4",
+    "structure": "〜ために",
+    "meaning": "in order to, for the purpose of",
+    "explanation": "Express purpose. Use plain form + ために.",
+    "examples": [
+      {"japanese": "日本語を勉強するために図書館に行きます。", "english": "I go to the library to study Japanese."},
+      {"japanese": "健康のために運動しています。", "english": "I exercise for my health."}
+    ]
+  },
+  {
+    "id": "g41",
+    "level": "N4",
+    "structure": "〜のに",
+    "meaning": "in order to, despite",
+    "explanation": "Express purpose or contrast. Use plain form + のに.",
+    "examples": [
+      {"japanese": "この薬を作るのに時間がかかります。", "english": "It takes time to make this medicine."},
+      {"japanese": "勉強したのに試験に落ちました。", "english": "Despite studying, I failed the exam."}
+    ]
+  },
+  {
+    "id": "g42",
+    "level": "N4",
+    "structure": "〜のです/んです",
+    "meaning": "explanatory tone",
+    "explanation": "Add explanatory or emphatic nuance. Use plain form + のです/んです.",
+    "examples": [
+      {"japanese": "どうして遅れたのですか。", "english": "Why were you late?"},
+      {"japanese": "風邪を引いたんです。", "english": "I caught a cold (that's why)."}
+    ]
+  },
+  {
+    "id": "g43",
+    "level": "N4",
+    "structure": "〜だけでなく",
+    "meaning": "not only... but also",
+    "explanation": "Express addition beyond expectation. Use noun/plain form + だけでなく.",
+    "examples": [
+      {"japanese": "彼は英語だけでなく中国語も話せます。", "english": "He can speak not only English but also Chinese."},
+      {"japanese": "安いだけでなく美味しいです。", "english": "It's not only cheap but also delicious."}
+    ]
+  },
+  {
+    "id": "g44",
+    "level": "N4",
+    "structure": "〜し",
+    "meaning": "and, moreover",
+    "explanation": "List multiple reasons or facts. Use plain form + し.",
+    "examples": [
+      {"japanese": "雨も降るし、寒いし、出かけたくありません。", "english": "It's raining, and it's cold, so I don't want to go out."},
+      {"japanese": "安いし、美味しいし、このレストランが好きです。", "english": "It's cheap and delicious, so I like this restaurant."}
+    ]
+  },
+  {
+    "id": "g45",
+    "level": "N4",
+    "structure": "〜というのは",
+    "meaning": "the thing called, what is meant by",
+    "explanation": "Define or explain a term. Use というのは + explanation.",
+    "examples": [
+      {"japanese": "寿司というのは日本料理です。", "english": "Sushi is Japanese cuisine."},
+      {"japanese": "忙しいというのはどういう意味ですか。", "english": "What does 'busy' mean?"}
     ]
   }
 ]

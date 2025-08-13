@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import Flashcard from '@/components/Flashcard';
 import Quiz from '@/components/Quiz';
+import QuizGenerator from '@/components/QuizGenerator';
 import SpeakerButton from '@/components/SpeakerButton';
 import { getVocabulary } from '@/lib/data';
 import { VocabularyItem } from '@/types/learning';
@@ -13,7 +14,7 @@ import { useProgress } from '@/hooks/useProgress';
 import { Search } from 'lucide-react';
 
 export default function Vocabulary() {
-  const [currentView, setCurrentView] = useState<'list' | 'flashcard' | 'quiz'>('list');
+  const [currentView, setCurrentView] = useState<'list' | 'flashcard' | 'quiz' | 'comprehensive-quiz'>('list');
   const [selectedLevel, setSelectedLevel] = useState<'N5' | 'N4' | 'all'>('all');
   const [currentFlashcardIndex, setCurrentFlashcardIndex] = useState(0);
   const [learnedWords, setLearnedWords] = useState<Set<string>>(new Set());
@@ -132,6 +133,22 @@ export default function Vocabulary() {
     );
   }
 
+  if (currentView === 'comprehensive-quiz') {
+    return (
+      <QuizGenerator
+        category="vocabulary"
+        questionCount={50}
+        onComplete={(score, total) => {
+          const xpReward = score * 15;
+          addXP(xpReward);
+          updateStreak();
+          setCurrentView('list');
+        }}
+        onClose={() => setCurrentView('list')}
+      />
+    );
+  }
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -153,7 +170,15 @@ export default function Vocabulary() {
             disabled={filteredVocabulary.length === 0}
             data-testid="start-quiz"
           >
-            Take Quiz
+            Quick Quiz
+          </Button>
+          <Button
+            onClick={() => setCurrentView('comprehensive-quiz')}
+            variant="secondary"
+            disabled={filteredVocabulary.length === 0}
+            data-testid="start-comprehensive-quiz"
+          >
+            Comprehensive Quiz
           </Button>
         </div>
       </div>

@@ -1,0 +1,128 @@
+{
+  "vocabulary": [
+    {
+      "id": "vq1",
+      "type": "meaning",
+      "question": "What does '利用' mean?",
+      "options": ["use", "study", "work", "play"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "vq2",
+      "type": "reading",
+      "question": "How do you read '会議'?",
+      "options": ["かいぎ", "がいぎ", "かいが", "がいが"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "vq3",
+      "type": "meaning",
+      "question": "What does '連絡' mean?",
+      "options": ["meeting", "contact", "report", "plan"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "vq4",
+      "type": "usage",
+      "question": "Which sentence uses '準備' correctly?",
+      "options": ["試験の準備をします", "準備が美味しいです", "準備を見ます", "準備が高いです"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "vq5",
+      "type": "meaning",
+      "question": "What does '心配' mean?",
+      "options": ["happiness", "worry", "anger", "surprise"],
+      "correctAnswer": 1,
+      "level": "N4"
+    }
+  ],
+  "kanji": [
+    {
+      "id": "kq1",
+      "type": "reading",
+      "question": "How do you read '利用' (use)?",
+      "options": ["りよう", "りゆう", "しよう", "しゆう"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "kq2",
+      "type": "meaning",
+      "question": "What does the kanji '連' mean?",
+      "options": ["break", "connect", "stop", "start"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "kq3",
+      "type": "reading",
+      "question": "How do you read '計画'?",
+      "options": ["けいかく", "けいが", "きかく", "きが"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "kq4",
+      "type": "meaning",
+      "question": "What does '発表' mean?",
+      "options": ["hide", "announce", "forget", "lose"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "kq5",
+      "type": "component",
+      "question": "Which kanji contains the '心' (heart) radical?",
+      "options": ["利", "用", "心配", "会議"],
+      "correctAnswer": 2,
+      "level": "N4"
+    }
+  ],
+  "grammar": [
+    {
+      "id": "gq1",
+      "type": "usage",
+      "question": "Complete: 明日雨が降る___。(It might rain tomorrow)",
+      "options": ["でしょう", "かもしれません", "はずです", "つもりです"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "gq2",
+      "type": "meaning",
+      "question": "What does '〜てしまう' express?",
+      "options": ["plan", "completion/regret", "possibility", "obligation"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "gq3",
+      "type": "transformation",
+      "question": "Change to potential form: 食べる → ?",
+      "options": ["食べられる", "食べたい", "食べそう", "食べよう"],
+      "correctAnswer": 0,
+      "level": "N4"
+    },
+    {
+      "id": "gq4",
+      "type": "usage",
+      "question": "Complete: 宿題をし___ならない。(I have to do homework)",
+      "options": ["て", "なければ", "たら", "ば"],
+      "correctAnswer": 1,
+      "level": "N4"
+    },
+    {
+      "id": "gq5",
+      "type": "meaning",
+      "question": "What does '〜つもりです' mean?",
+      "options": ["just did", "intend to", "must do", "looks like"],
+      "correctAnswer": 1,
+      "level": "N4"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "listen1",
+    "level": "N4",
+    "type": "self-introduction",
+    "category": "personal",
+    "audio": "はじめまして。田中と申します。どうぞよろしくお願いします。",
+    "transcript": "はじめまして。田中と申します。どうぞよろしくお願いします。",
+    "question": "What is the speaker doing?",
+    "options": ["Introducing themselves", "Asking for directions", "Making an appointment", "Ordering food"],
+    "correctAnswer": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "listen2",
+    "level": "N4",
+    "type": "self-introduction",
+    "category": "personal",
+    "audio": "私はマイクです。アメリカから来ました。日本語を勉強しています。",
+    "transcript": "私はマイクです。アメリカから来ました。日本語を勉強しています。",
+    "question": "What is Mike studying?",
+    "options": ["English", "Japanese", "History", "Business"],
+    "correctAnswer": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "listen3",
+    "level": "N4",
+    "type": "daily-conversation",
+    "category": "shopping",
+    "audio": "すみません、この靴はいくらですか。八千円です。ちょっと高いですね。",
+    "transcript": "すみません、この靴はいくらですか。八千円です。ちょっと高いですね。",
+    "question": "How much do the shoes cost?",
+    "options": ["6,000 yen", "7,000 yen", "8,000 yen", "9,000 yen"],
+    "correctAnswer": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "listen4",
+    "level": "N4",
+    "type": "business-talk",
+    "category": "meeting",
+    "audio": "会議は来週の火曜日、午後三時からです。資料の準備をお願いします。",
+    "transcript": "会議は来週の火曜日、午後三時からです。資料の準備をお願いします。",
+    "question": "When is the meeting scheduled?",
+    "options": ["Next Monday 3PM", "Next Tuesday 3PM", "This Tuesday 3PM", "Next Wednesday 3PM"],
+    "correctAnswer": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "listen5",
+    "level": "N4",
+    "type": "daily-conversation",
+    "category": "restaurant",
+    "audio": "いらっしゃいませ。何名様ですか。二名です。こちらへどうぞ。",
+    "transcript": "いらっしゃいませ。何名様ですか。二名です。こちらへどうぞ。",
+    "question": "How many people are there?",
+    "options": ["One person", "Two people", "Three people", "Four people"],
+    "correctAnswer": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "listen6",
+    "level": "N4",
+    "type": "business-talk",
+    "category": "phone",
+    "audio": "お忙しい中、申し訳ございません。来月の契約についてご相談があります。",
+    "transcript": "お忙しい中、申し訳ございません。来月の契約についてご相談があります。",
+    "question": "What does the caller want to discuss?",
+    "options": ["This month's contract", "Next month's contract", "Last month's report", "Today's meeting"],
+    "correctAnswer": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "listen7",
+    "level": "N4",
+    "type": "self-introduction",
+    "category": "work",
+    "audio": "私は営業部の佐藤です。入社して三年になります。よろしくお願いします。",
+    "transcript": "私は営業部の佐藤です。入社して三年になります。よろしくお願いします。",
+    "question": "How long has Sato been with the company?",
+    "options": ["One year", "Two years", "Three years", "Four years"],
+    "correctAnswer": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "listen8",
+    "level": "N4",
+    "type": "daily-conversation",
+    "category": "transportation",
+    "audio": "次は新宿駅です。お降りのお客様は準備をしてください。",
+    "transcript": "次は新宿駅です。お降りのお客様は準備をしてください。",
+    "question": "What is the announcement about?",
+    "options": ["The train is delayed", "Next stop is Shinjuku", "The doors are closing", "Please buy tickets"],
+    "correctAnswer": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "listen9",
+    "level": "N4",
+    "type": "business-talk",
+    "category": "presentation",
+    "audio": "それでは、今月の売上について発表させていただきます。前月と比較して十パーセント増加しました。",
+    "transcript": "それでは、今月の売上について発表させていただきます。前月と比較して十パーセント増加しました。",
+    "question": "What happened to this month's sales?",
+    "options": ["Decreased 10%", "Increased 10%", "Stayed the same", "Decreased 20%"],
+    "correctAnswer": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "listen10",
+    "level": "N4",
+    "type": "daily-conversation",
+    "category": "weather",
+    "audio": "今日は天気がいいですね。そうですね、散歩には最高の日です。",
+    "transcript": "今日は天気がいいですね。そうですね、散歩には最高の日です。",
+    "question": "What kind of day is it for walking?",
+    "options": ["Bad day", "Okay day", "Perfect day", "Rainy day"],
+    "correctAnswer": 2,
+    "difficulty": "easy"
+  }
+]

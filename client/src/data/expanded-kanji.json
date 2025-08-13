@@ -1,0 +1,12 @@
+[
+  {"id": "kj121", "level": "N4", "character": "通", "onyomi": "ツウ", "kunyomi": "とお", "meaning": "pass through", "examples": ["交通", "通る"]},
+  {"id": "kj122", "level": "N4", "character": "転", "onyomi": "テン", "kunyomi": "ころ", "meaning": "turn, roll", "examples": ["運転", "転ぶ"]},
+  {"id": "kj123", "level": "N4", "character": "乗", "onyomi": "ジョウ", "kunyomi": "の", "meaning": "ride", "examples": ["乗車", "乗る"]},
+  {"id": "kj124", "level": "N4", "character": "降", "onyomi": "コウ", "kunyomi": "お", "meaning": "descend", "examples": ["降車", "降りる"]},
+  {"id": "kj125", "level": "N4", "character": "鉄", "onyomi": "テツ", "kunyomi": "", "meaning": "iron", "examples": ["地下鉄", "鉄道"]},
+  {"id": "kj126", "level": "N4", "character": "動", "onyomi": "ドウ", "kunyomi": "うご", "meaning": "move", "examples": ["自動車", "動く"]},
+  {"id": "kj127", "level": "N4", "character": "飛", "onyomi": "ヒ", "kunyomi": "と", "meaning": "fly", "examples": ["飛行機", "飛ぶ"]},
+  {"id": "kj128", "level": "N4", "character": "行", "onyomi": "コウ、ギョウ", "kunyomi": "い", "meaning": "go", "examples": ["飛行機", "行く"]},
+  {"id": "kj129", "level": "N4", "character": "機", "onyomi": "キ", "kunyomi": "", "meaning": "machine", "examples": ["飛行機", "機械"]},
+  {"id": "kj130", "level": "N4", "character": "船", "onyomi": "セン", "kunyomi": "ふね", "meaning": "ship", "examples": ["船舶", "船"]}
+]

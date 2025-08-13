@@ -14,6 +14,7 @@ import Grammar from "@/pages/Grammar";
 import Reading from "@/pages/Reading";
 import Practice from "@/pages/Practice";
 import N4StudyPlan from "@/pages/N4StudyPlan";
+import ContentDashboard from "@/pages/ContentDashboard";
 import NotFound from "@/pages/not-found";
 
 const pageConfig = {
@@ -26,6 +27,7 @@ const pageConfig = {
   '/reading': { title: 'Reading', subtitle: 'Practice comprehension skills' },
   '/practice': { title: 'Practice', subtitle: 'Gamified learning exercises' },
   '/n4-study-plan': { title: 'JLPT N4 Study Plan', subtitle: 'Your comprehensive N4 preparation guide' },
+  '/content-dashboard': { title: 'Content Dashboard', subtitle: 'Track your N4 learning progress' },
 };
 
 function Router() {
@@ -40,6 +42,7 @@ function Router() {
       <Route path="/reading" component={Reading} />
       <Route path="/practice" component={Practice} />
       <Route path="/n4-study-plan" component={N4StudyPlan} />
+      <Route path="/content-dashboard" component={ContentDashboard} />
       <Route component={NotFound} />
     </Switch>
   );

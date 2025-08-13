@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Play, Pause, RotateCcw, Volume2, CheckCircle, XCircle } from 'lucide-react';
 import { useSpeech } from '@/hooks/useSpeech';
+import listeningData from '@/data/expanded-listening.json';
 
 interface ListeningExercise {
   id: string;
@@ -18,7 +19,17 @@ interface ListeningExercise {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
-const LISTENING_EXERCISES: ListeningExercise[] = [
+const LISTENING_EXERCISES: ListeningExercise[] = listeningData.map(item => ({
+  ...item,
+  level: item.level as 'N5' | 'N4',
+  type: item.type === 'daily-conversation' ? 'conversation' as const :
+        item.type === 'business-talk' ? 'dialog' as const : 
+        'instruction' as const,
+  difficulty: item.difficulty as 'easy' | 'medium' | 'hard'
+}));
+
+// Fallback data in case the import fails
+const FALLBACK_EXERCISES: ListeningExercise[] = [
   {
     id: 'l1',
     level: 'N4',
@@ -76,6 +87,9 @@ const LISTENING_EXERCISES: ListeningExercise[] = [
   }
 ];
 
+// Use expanded data or fallback
+const EXERCISES = LISTENING_EXERCISES.length > 0 ? LISTENING_EXERCISES : FALLBACK_EXERCISES;
+
 interface ListeningPracticeProps {
   onComplete?: (score: number) => void;
 }
@@ -85,12 +99,12 @@ export default function ListeningPractice({ onComplete }: ListeningPracticeProps
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
-  const [completed, setCompleted] = useState<boolean[]>(new Array(LISTENING_EXERCISES.length).fill(false));
+  const [completed, setCompleted] = useState<boolean[]>(new Array(EXERCISES.length).fill(false));
   const { speak, isSupported } = useSpeech();
   const [isSpeaking, setIsSpeaking] = useState(false);
 
-  const exercise = LISTENING_EXERCISES[currentExercise];
-  const progress = ((currentExercise + 1) / LISTENING_EXERCISES.length) * 100;
+  const exercise = EXERCISES[currentExercise];
+  const progress = ((currentExercise + 1) / EXERCISES.length) * 100;
 
   const playAudio = () => {
     if (isSupported) {
@@ -122,7 +136,7 @@ export default function ListeningPractice({ onComplete }: ListeningPracticeProps
   };
 
   const nextExercise = () => {
-    if (currentExercise < LISTENING_EXERCISES.length - 1) {
+    if (currentExercise < EXERCISES.length - 1) {
       setCurrentExercise(prev => prev + 1);
       setSelectedAnswer(null);
       setShowResult(false);
