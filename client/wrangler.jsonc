@@ -1,0 +1,11 @@
+{
+  "name": "rest-express-app",
+  "compatibility_date": "2025-08-13",
+  "main": "dist/index.js",
+  "assets": {
+    "directory": "dist/public"
+  },
+  "vars": {
+    "NODE_ENV": "production"
+  }
+}
