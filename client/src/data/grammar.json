@@ -1,0 +1,167 @@
+[
+  {
+    "id": "g1",
+    "level": "N5",
+    "structure": "です",
+    "meaning": "is/am/are (polite)",
+    "explanation": "Used to make statements polite. Attached to nouns and な-adjectives.",
+    "examples": [
+      {"japanese": "私は学生です。", "english": "I am a student."},
+      {"japanese": "これは本です。", "english": "This is a book."}
+    ]
+  },
+  {
+    "id": "g2",
+    "level": "N5",
+    "structure": "ではありません",
+    "meaning": "is not (polite negative)",
+    "explanation": "Polite negative form of です. Used to deny something politely.",
+    "examples": [
+      {"japanese": "私は学生ではありません。", "english": "I am not a student."},
+      {"japanese": "これは本ではありません。", "english": "This is not a book."}
+    ]
+  },
+  {
+    "id": "g3",
+    "level": "N5",
+    "structure": "〜ます",
+    "meaning": "polite form of verbs",
+    "explanation": "Used to make verbs polite. Replace う with います for u-verbs.",
+    "examples": [
+      {"japanese": "私は日本語を勉強します。", "english": "I study Japanese."},
+      {"japanese": "明日学校に行きます。", "english": "I will go to school tomorrow."}
+    ]
+  },
+  {
+    "id": "g4",
+    "level": "N5",
+    "structure": "〜ません",
+    "meaning": "polite negative form",
+    "explanation": "Negative form of ます. Used to say you don't do something politely.",
+    "examples": [
+      {"japanese": "今日は働きません。", "english": "I don't work today."},
+      {"japanese": "肉を食べません。", "english": "I don't eat meat."}
+    ]
+  },
+  {
+    "id": "g5",
+    "level": "N5",
+    "structure": "〜ました",
+    "meaning": "polite past tense",
+    "explanation": "Past tense of ます. Used to say something was done politely.",
+    "examples": [
+      {"japanese": "昨日映画を見ました。", "english": "I watched a movie yesterday."},
+      {"japanese": "朝ごはんを食べました。", "english": "I ate breakfast."}
+    ]
+  },
+  {
+    "id": "g6",
+    "level": "N5",
+    "structure": "〜ませんでした",
+    "meaning": "polite negative past",
+    "explanation": "Negative past tense of ます. Used to say something wasn't done politely.",
+    "examples": [
+      {"japanese": "昨日は勉強しませんでした。", "english": "I didn't study yesterday."},
+      {"japanese": "朝ごはんを食べませんでした。", "english": "I didn't eat breakfast."}
+    ]
+  },
+  {
+    "id": "g7",
+    "level": "N5",
+    "structure": "〜て/でください",
+    "meaning": "please do...",
+    "explanation": "Polite way to make requests. Use て form + ください.",
+    "examples": [
+      {"japanese": "ここに座ってください。", "english": "Please sit here."},
+      {"japanese": "窓を開けてください。", "english": "Please open the window."}
+    ]
+  },
+  {
+    "id": "g8",
+    "level": "N5",
+    "structure": "〜があります/います",
+    "meaning": "there is/are, to have",
+    "explanation": "います for living things, あります for non-living things.",
+    "examples": [
+      {"japanese": "机の上に本があります。", "english": "There is a book on the desk."},
+      {"japanese": "公園に犬がいます。", "english": "There is a dog in the park."}
+    ]
+  },
+  {
+    "id": "g9",
+    "level": "N5",
+    "structure": "〜は〜が好きです",
+    "meaning": "to like something",
+    "explanation": "Pattern for expressing likes. は marks the topic, が marks the object.",
+    "examples": [
+      {"japanese": "私は音楽が好きです。", "english": "I like music."},
+      {"japanese": "田中さんはコーヒーが好きです。", "english": "Tanaka-san likes coffee."}
+    ]
+  },
+  {
+    "id": "g10",
+    "level": "N5",
+    "structure": "〜たいです",
+    "meaning": "want to do...",
+    "explanation": "Express desire to do something. Change ます to たい + です.",
+    "examples": [
+      {"japanese": "日本に行きたいです。", "english": "I want to go to Japan."},
+      {"japanese": "新しい車を買いたいです。", "english": "I want to buy a new car."}
+    ]
+  },
+  {
+    "id": "g11",
+    "level": "N4",
+    "structure": "〜なければならない",
+    "meaning": "must do, have to do",
+    "explanation": "Express obligation or necessity. Use negative form + ければならない.",
+    "examples": [
+      {"japanese": "宿題をしなければならない。", "english": "I have to do homework."},
+      {"japanese": "早く起きなければならない。", "english": "I have to wake up early."}
+    ]
+  },
+  {
+    "id": "g12",
+    "level": "N4",
+    "structure": "〜ても/でもいいです",
+    "meaning": "it's okay to do..., may do...",
+    "explanation": "Give permission or say something is acceptable. Use て form + も + いいです.",
+    "examples": [
+      {"japanese": "ここで写真を撮ってもいいですか。", "english": "Is it okay to take photos here?"},
+      {"japanese": "早く帰ってもいいです。", "english": "It's okay to go home early."}
+    ]
+  },
+  {
+    "id": "g13",
+    "level": "N4",
+    "structure": "〜てはいけません",
+    "meaning": "must not do, not allowed to do",
+    "explanation": "Express prohibition. Use て form + は + いけません.",
+    "examples": [
+      {"japanese": "ここでタバコを吸ってはいけません。", "english": "You must not smoke here."},
+      {"japanese": "遅刻してはいけません。", "english": "You must not be late."}
+    ]
+  },
+  {
+    "id": "g14",
+    "level": "N4",
+    "structure": "〜たことがあります",
+    "meaning": "have done... before (experience)",
+    "explanation": "Express past experience. Use た form + こと + が + あります.",
+    "examples": [
+      {"japanese": "富士山に登ったことがあります。", "english": "I have climbed Mt. Fuji before."},
+      {"japanese": "寿司を食べたことがありますか。", "english": "Have you ever eaten sushi?"}
+    ]
+  },
+  {
+    "id": "g15",
+    "level": "N4",
+    "structure": "〜ている",
+    "meaning": "continuous action, state",
+    "explanation": "Progressive form showing ongoing action or resulting state.",
+    "examples": [
+      {"japanese": "今、勉強しています。", "english": "I am studying now."},
+      {"japanese": "結婚しています。", "english": "I am married."}
+    ]
+  }
+]
