@@ -6,6 +6,15 @@ JLearner is a comprehensive Japanese learning web application designed for JLPT 
 
 Preferred communication style: Simple, everyday language.
 
+# Recent Changes
+
+## Migration Completed (August 13, 2025)
+- Successfully migrated project from Replit Agent to standard Replit environment
+- Installed missing tsx dependency for TypeScript execution
+- Verified application runs cleanly on port 5000 with proper client/server separation
+- All security practices validated - Express server with Vite frontend integration
+- Project ready for further development and enhancement
+
 # System Architecture
 
 ## Frontend Architecture
